@@ -6,10 +6,6 @@ export interface NuxtTwitchExtOptions {
    */
   helperScript: string
   /**
-   * Twitch Extension Client ID
-   */
-  clientId: string
-  /**
    * Name of the ZIP file containing the built extension
    * @default "twitch-ext.zip"
    */
@@ -55,7 +51,7 @@ export interface NuxtTwitchExtOptions {
        *
        * Setting this option will override the default allowed methods
        *
-      * @default ["GET"]
+       * @default ["GET"]
        */
       allowMethods?: HTTPMethod[]
       /**
