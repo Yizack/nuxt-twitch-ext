@@ -52,6 +52,16 @@ export default defineNuxtModule<NuxtTwitchExtOptions>({
     addTypeTemplate({
       filename: 'twitch-ext.d.ts',
       src: resolver.resolve('./runtime/types/twitch-ext.d.ts'),
+    }, {
+      nuxt: true,
+      nitro: true,
+    })
+
+    addTypeTemplate({
+      filename: 'twitch-jwt.d.ts',
+      src: resolver.resolve('./runtime/types/twitch-jwt.d.ts'),
+    }, {
+      nitro: true,
     })
 
     if (options.ebs && options.ebs.enabled) {

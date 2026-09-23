@@ -2,7 +2,7 @@ import { Buffer } from 'node:buffer'
 import { jwtVerify, type JWTVerifyOptions } from 'jose'
 import { type H3Event, getHeader } from 'h3'
 import { useRuntimeConfig } from '#imports'
-import type {} from '../../types/twitch-ext'
+import type {} from '../../types/twitch-jwt'
 
 export const verifyTwitchExtension = async (event: H3Event, options?: JWTVerifyOptions) => {
   const token = getHeader(event, 'Authorization')?.replace('Bearer ', '')
