@@ -1,0 +1,11 @@
+minimumReleaseAge: 0
+shamefullyHoist: true
+strictPeerDependencies: false
+
+packages:
+  - playground
+
+allowBuilds:
+  '@parcel/watcher': false
+  esbuild: false
+  unrs-resolver: false

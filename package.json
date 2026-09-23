@@ -1,0 +1,75 @@
+{
+  "name": "nuxt-twitch-ext",
+  "version": "0.0.0",
+  "description": "Create Twitch Extensions with Nuxt",
+  "keywords": [
+    "nuxt",
+    "twitch",
+    "twitch-ext",
+    "twitch-extension"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yizack/nuxt-twitch-ext.git"
+  },
+  "homepage": "https://github.com/Yizack/nuxt-twitch-ext",
+  "author": {
+    "name": "Yizack Rangel",
+    "email": "yizackr@gmail.com",
+    "url": "https://yizack.com"
+  },
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/types.d.mts",
+      "import": "./dist/module.mjs"
+    }
+  },
+  "main": "./dist/module.mjs",
+  "files": [
+    "dist",
+    "bin"
+  ],
+  "bin": {
+    "nuxt-twitch-ext": "./bin/cli.mjs"
+  },
+  "scripts": {
+    "build": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxt-module-build build",
+    "prepack": "node --run build",
+    "dev": "nuxt dev playground --port 5173",
+    "dev:build": "nuxt build playground",
+    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxt prepare playground",
+    "release": "node --run checks && changelogen --release --push --no-github",
+    "release:github": "changelogen gh release",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "vitest run --reporter=verbose",
+    "test:types": "vue-tsc --noEmit && cd playground && vue-tsc -b --noEmit",
+    "test:watch": "vitest watch",
+    "checks": "node --run lint && node --run test && node --run test:types && node --run build"
+  },
+  "dependencies": {
+    "@nuxt/kit": "^4.5.2",
+    "@types/twitch-ext": "^1.24.9",
+    "archiver": "^8.0.0",
+    "defu": "^6.1.7",
+    "jose": "^6.2.12"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "^3.4.2",
+    "@nuxt/eslint-config": "^1.17.0",
+    "@nuxt/module-builder": "^1.0.3",
+    "@nuxt/schema": "^4.5.2",
+    "@nuxt/test-utils": "^4.3.2",
+    "@types/archiver": "^8.0.0",
+    "@types/node": "^26.6.2",
+    "changelogen": "^0.6.2",
+    "eslint": "^10.11.0",
+    "nuxt": "^4.5.2",
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.1",
+    "vue-tsc": "^3.3.11"
+  },
+  "packageManager": "pnpm@12.5.1"
+}

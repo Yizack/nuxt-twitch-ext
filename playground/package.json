@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "nuxt-twitch-ext-playground",
+  "type": "module",
+  "scripts": {
+    "postinstall": "nuxt prepare",
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "build:twitch-ext": "nuxt-twitch-ext",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "nuxt": "^4.5.2",
+    "nuxt-twitch-ext": "workspace:*"
+  }
+}

@@ -1,0 +1,26 @@
+name: autofix.ci  # needed to securely identify the workflow
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/setup@v3
+        with:
+          runtime: node@lts
+          cache: true
+
+      - name: 🔎 Lint (code)
+        run: node --run lint:fix
+
+      - name: ⚙️ Auto-fix
+        uses: autofix-ci/action@635ffb0c9798bd160680f18fd73371e355b85f27
