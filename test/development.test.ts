@@ -52,13 +52,8 @@ describe('development', () => {
 
   describe('ebs', () => {
     it('returns 401 for unauthorized requests', async () => {
-      await expect(
-        $fetch('/api/ebs/data', {
-          onResponse({ response }) {
-            expect(response.status).toBe(401) // unauthorized missing extension token in test
-          },
-        }),
-      ).rejects.toThrow()
+      // unauthorized missing extension token in test
+      await expect($fetch('/api/ebs/data')).rejects.toMatchObject({ statusCode: 401 })
     })
   })
 })

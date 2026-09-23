@@ -30,7 +30,7 @@ describe('twitch-ext', () => {
     })
 
     it('rejects requests for non-extension pages', async () => {
-      await expect($fetch('/index.html')).rejects.toThrow()
+      await expect($fetch('/index.html')).rejects.toMatchObject({ statusCode: 404 })
     })
 
     it('loads Nuxt state from panel-nuxt-config.js', async () => {
@@ -52,7 +52,7 @@ describe('twitch-ext', () => {
     })
 
     it('rejects requests for non-extension pages', async () => {
-      await expect($fetch('/index.html')).rejects.toThrow()
+      await expect($fetch('/index.html')).rejects.toMatchObject({ statusCode: 404 })
     })
 
     it('loads Nuxt state from config-nuxt-config.js', async () => {

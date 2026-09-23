@@ -18,25 +18,20 @@ await setup({
 describe('production', () => {
   describe('panel', () => {
     it('expects /ext/panel to not exist', async () => {
-      await expect($fetch('/ext/panel')).rejects.toThrow()
+      await expect($fetch('/ext/panel')).rejects.toMatchObject({ statusCode: 404 })
     })
   })
 
   describe('config', () => {
     it('expects /ext/config to not exist', async () => {
-      await expect($fetch('/ext/config')).rejects.toThrow()
+      await expect($fetch('/ext/config')).rejects.toMatchObject({ statusCode: 404 })
     })
   })
 
   describe('ebs', () => {
     it('returns 401 for unauthorized requests', async () => {
-      await expect(
-        $fetch('/api/ebs/data', {
-          onResponse({ response }) {
-            expect(response.status).toBe(401) // unauthorized missing extension token in test
-          },
-        }),
-      ).rejects.toThrow()
+      // unauthorized missing extension token in test
+      await expect($fetch('/api/ebs/data')).rejects.toMatchObject({ statusCode: 401 })
     })
 
     it('contains default headers for OPTIONS requests', async () => {
@@ -61,7 +56,7 @@ describe('production', () => {
             expect(headers.get('access-control-allow-origin')).toBe('https://test.ext-twitch.tv')
           },
         }),
-      ).rejects.toThrow()
+      ).rejects.toMatchObject({ statusCode: 401 })
     })
   })
 })
