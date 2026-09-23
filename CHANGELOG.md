@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v0.1.2
+
+[compare changes](https://github.com/Yizack/nuxt-twitch-ext/compare/v0.1.1...v0.1.2)
+
+### 🩹 Fixes
+
+- **types:** Update CORS methods default ([7e449fd](https://github.com/Yizack/nuxt-twitch-ext/commit/7e449fd))
+- Use defined preflight config ([a10d781](https://github.com/Yizack/nuxt-twitch-ext/commit/a10d781))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.1.1
 
 [compare changes](https://github.com/Yizack/nuxt-twitch-ext/compare/v0.1.0...v0.1.1)
