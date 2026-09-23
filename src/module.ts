@@ -148,7 +148,6 @@ export default defineNuxtModule<NuxtTwitchExtOptions>({
 
       // Prerender extension pages
       nuxt.hook('prerender:routes', ({ routes }) => {
-        console.log('Prerendering extension pages:', extensionPages)
         for (const page of extensionPages) {
           routes.add(`/${page}`)
         }
