@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, extFetch } from '#imports'
+import { onMounted } from '#imports'
 
 onMounted(() => {
   Twitch.ext.onAuthorized(async (auth) => {

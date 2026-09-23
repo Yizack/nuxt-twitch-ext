@@ -2,7 +2,7 @@ import { createWriteStream } from 'node:fs'
 import { readFile, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { defu } from 'defu'
-import { addServerHandler, createResolver, defineNuxtModule, hasNuxtModule, addTypeTemplate, useNitro, addServerImportsDir, addImportsDir } from '@nuxt/kit'
+import { addServerHandler, createResolver, defineNuxtModule, hasNuxtModule, addTypeTemplate, useNitro, addServerImportsDir, addImportsDir, addPlugin } from '@nuxt/kit'
 import { ZipArchive } from 'archiver'
 import type {} from '@nuxt/nitro-server/augments'
 import type { ModuleOptions, NuxtTwitchExtOptions } from './types'
@@ -49,8 +49,20 @@ export default defineNuxtModule<NuxtTwitchExtOptions>({
   setup(options, nuxt) {
     const resolver = createResolver(import.meta.url)
 
+    addPlugin({
+      src: resolver.resolve('./runtime/app/plugins/ext-fetch'),
+      mode: 'all',
+    })
+
     addTypeTemplate({
-      filename: 'twitch-ext.d.ts',
+      filename: 'types/twitch-ext-fetch.d.ts',
+      src: resolver.resolve('./runtime/types/twitch-ext-fetch.d.ts'),
+    }, {
+      nuxt: true,
+    })
+
+    addTypeTemplate({
+      filename: 'types/twitch-ext.d.ts',
       src: resolver.resolve('./runtime/types/twitch-ext.d.ts'),
     }, {
       nuxt: true,
@@ -58,7 +70,7 @@ export default defineNuxtModule<NuxtTwitchExtOptions>({
     })
 
     addTypeTemplate({
-      filename: 'twitch-jwt.d.ts',
+      filename: 'types/twitch-jwt.d.ts',
       src: resolver.resolve('./runtime/types/twitch-jwt.d.ts'),
     }, {
       nitro: true,
