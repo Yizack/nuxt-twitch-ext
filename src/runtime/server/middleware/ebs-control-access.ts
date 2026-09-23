@@ -6,13 +6,6 @@ export default defineEventHandler((event) => {
 
   if (!event.path.startsWith(`/api/${twitchExt.ebs.dirname}/`)) return
 
-  if (event.method === 'OPTIONS') {
-    setHeaders(event, {
-      'Access-Control-Allow-Methods': twitchExt.ebs.preflight.allowMethods.join(', '),
-      'Access-Control-Allow-Headers': twitchExt.ebs.preflight.allowHeaders.join(', '),
-    })
-  }
-
   if (!twitchExt.clientId) {
     throw createError({
       status: 500,
@@ -24,5 +17,12 @@ export default defineEventHandler((event) => {
     'Access-Control-Allow-Origin': `https://${twitchExt.clientId}.ext-twitch.tv`,
   })
 
-  return sendNoContent(event)
+  if (event.method === 'OPTIONS') {
+    setHeaders(event, {
+      'Access-Control-Allow-Methods': twitchExt.ebs.preflight.allowMethods.join(', '),
+      'Access-Control-Allow-Headers': twitchExt.ebs.preflight.allowHeaders.join(', '),
+    })
+
+    return sendNoContent(event)
+  }
 })
