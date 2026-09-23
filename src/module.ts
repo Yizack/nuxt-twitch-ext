@@ -80,6 +80,10 @@ export default defineNuxtModule<NuxtTwitchExtOptions>({
       addImportsDir(resolver.resolve('./runtime/app/utils'))
       addServerImportsDir(resolver.resolve('./runtime/server/utils'))
 
+      if (nuxt.options.twitchExt && nuxt.options.twitchExt.ebs) {
+        options.ebs.preflight = nuxt.options.twitchExt.ebs.preflight ?? options.ebs.preflight
+      }
+
       const runtimeConfig = nuxt.options.runtimeConfig
       runtimeConfig.twitchExt = defu(runtimeConfig.twitchExt, {
         ebs: options.ebs,
