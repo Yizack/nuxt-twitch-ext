@@ -18,7 +18,7 @@ export default defineNuxtModule<NuxtTwitchExtOptions>({
     helperScript: 'https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js',
     filename: 'twitch-ext.zip',
     pages: {
-      dirname: 'ext',
+      dirname: 'extension',
     },
     ebs: {
       enabled: true,
