@@ -55,7 +55,7 @@ export interface NuxtTwitchExtOptions {
        *
        * Setting this option will override the default allowed methods
        *
-       * @default ["GET", "POST"]
+      * @default ["GET"]
        */
       allowMethods?: HTTPMethod[]
       /**
