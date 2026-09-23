@@ -1,6 +1,29 @@
 # Changelog
 
 
+## v0.1.1
+
+[compare changes](https://github.com/Yizack/nuxt-twitch-ext/compare/v0.1.0...v0.1.1)
+
+### 🩹 Fixes
+
+- **verify:** Return null for invalid transactions ([5a83da4](https://github.com/Yizack/nuxt-twitch-ext/commit/5a83da4))
+- **module:** Persist twitchExt pages hook across rebuilds ([4584cdd](https://github.com/Yizack/nuxt-twitch-ext/commit/4584cdd))
+- **nuxt:** Initialize global extension fetch ([a76659d](https://github.com/Yizack/nuxt-twitch-ext/commit/a76659d))
+- **playground:** Return 401 for invalid auth ([ab71349](https://github.com/Yizack/nuxt-twitch-ext/commit/ab71349))
+
+### 🏡 Chore
+
+- Remove prerender debug log ([8c9d88d](https://github.com/Yizack/nuxt-twitch-ext/commit/8c9d88d))
+
+### ✅ Tests
+
+- Disable file parallelism ([8ff376d](https://github.com/Yizack/nuxt-twitch-ext/commit/8ff376d))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.1.0
 
 [compare changes](https://github.com/Yizack/nuxt-twitch-ext/compare/v0.0.1...v0.1.0)
