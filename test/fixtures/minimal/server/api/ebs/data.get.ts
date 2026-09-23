@@ -1,6 +1,6 @@
 import { defineEventHandler } from 'h3'
 import { createError } from '#imports'
-import { verifyTwitchExtension } from '../../../../../../src/runtime/server/utils/validators'
+import { verifyTwitchExtension } from '../../../../../../src/runtime/server/utils/verify'
 
 export default defineEventHandler(async (event) => {
   const payload = await verifyTwitchExtension(event)

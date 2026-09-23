@@ -45,8 +45,9 @@ export const verifyTwitchTransaction = async (
     ) {
       return payload
     }
+    return null
   }
   catch {
-    return
+    return null
   }
 }
