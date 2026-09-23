@@ -17,14 +17,14 @@ await setup({
 
 describe('production', () => {
   describe('panel', () => {
-    it('expects /ext/panel to not exist', async () => {
-      await expect($fetch('/ext/panel')).rejects.toMatchObject({ statusCode: 404 })
+    it('expects /extension/panel to not exist', async () => {
+      await expect($fetch('/extension/panel')).rejects.toMatchObject({ statusCode: 404 })
     })
   })
 
   describe('config', () => {
-    it('expects /ext/config to not exist', async () => {
-      await expect($fetch('/ext/config')).rejects.toMatchObject({ statusCode: 404 })
+    it('expects /extension/config to not exist', async () => {
+      await expect($fetch('/extension/config')).rejects.toMatchObject({ statusCode: 404 })
     })
   })
 

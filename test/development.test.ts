@@ -25,9 +25,9 @@ describe('development', () => {
       expect(html).toContain(helperScript)
     })
 
-    it('returns the same HTML as /ext/panel', async () => {
+    it('returns the same HTML as /extension/panel', async () => {
       const html = await $fetch('/panel.html')
-      const extensionHtml = await $fetch('/ext/panel')
+      const extensionHtml = await $fetch('/extension/panel')
       expect(html).toBe(extensionHtml)
     })
   })
@@ -43,9 +43,9 @@ describe('development', () => {
       expect(html).toContain(helperScript)
     })
 
-    it('returns the same HTML as /ext/config', async () => {
+    it('returns the same HTML as /extension/config', async () => {
       const html = await $fetch('/config.html')
-      const extensionHtml = await $fetch('/ext/config')
+      const extensionHtml = await $fetch('/extension/config')
       expect(html).toBe(extensionHtml)
     })
   })

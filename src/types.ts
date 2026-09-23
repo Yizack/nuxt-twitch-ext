@@ -20,7 +20,7 @@ export interface NuxtTwitchExtOptions {
   pages: {
     /**
      * Name of the page directory containing the extension pages
-     * @default "ext"
+     * @default "extension"
      */
     dirname: string
   }
