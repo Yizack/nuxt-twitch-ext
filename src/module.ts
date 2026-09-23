@@ -135,7 +135,7 @@ export default defineNuxtModule<NuxtTwitchExtOptions>({
       })
 
       // Remove all non-extension pages from the Nuxt pages array
-      nuxt.hooks.hookOnce('pages:extend', (pages) => {
+      nuxt.hook('pages:extend', (pages) => {
         const extensionBuildPages = pages.filter(page => extensionBuildPaths.includes(page.path))
         for (const page of extensionBuildPages) {
           page.path = page.path.replace(`/${options.pages.dirname}/`, '/')
