@@ -3,7 +3,7 @@ export default defineEventHandler(async (event) => {
 
   if (!payload) {
     throw createError({
-      status: 400,
+      status: 401,
       message: 'Invalid authorization',
     })
   }
