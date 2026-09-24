@@ -49,9 +49,10 @@ app/
 │   ├── index.vue                   # Main page
 │   ├── extension/                  # Twitch extension pages
 │   │   ├── config.vue
-│   │   ├── mobile.vue
 │   │   ├── panel.vue
-│   │   └── video-overlay.vue
+│   │   ├── mobile.vue
+│   │   ├── video_overlay.vue
+│   │   └── video_component.vue
 ├── assets/                         # Application assets
 │   └── ...
 server/
