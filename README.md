@@ -1,7 +1,10 @@
-# Nuxt-Twitch-ext
+# nuxt-twitch-ext
 
+<!-- prettier-ignore-start -->
 [![npm version][npm-version-src]][npm-version-href]
-[![npm downloads][npm-downloads-src]][npm-downloads-href] [![License][license-src]][license-href]
+[![npm downloads][npm-downloads-src]][npm-downloads-href]
+[![License][license-src]][license-href]
+<!-- prettier-ignore-end -->
 
 Build your Twitch Extension and Extension Backend Service (EBS) in a single Nuxt project.
 
@@ -59,6 +62,53 @@ server/
         └── ...
 ```
 
+## Configuration
+
+| Option                       | Default                             | Description                                             |
+| ---------------------------- | ----------------------------------- | ------------------------------------------------------- |
+| `helperScript`               | Twitch's Extension Helper URL       | Script included in extension pages                      |
+| `filename`                   | `'twitch-ext.zip'`                  | Name of the generated archive                           |
+| `pages.dirname`              | `'extension'`                       | Directory containing extension pages under `app/pages/` |
+| `ebs.enabled`                | `true`                              | Enable the EBS utilities and CORS handling              |
+| `ebs.dirname`                | `'ebs'`                             | API directory for EBS routes, such as `server/api/ebs/` |
+| `ebs.baseURL`                |                                     | Production URL used by `extFetch`                       |
+| `ebs.preflight.allowMethods` | `['GET']`                           | Methods allowed for EBS CORS preflight requests         |
+| `ebs.preflight.allowHeaders` | `['Content-Type', 'Authorization']` | Headers allowed for EBS CORS preflight requests         |
+
+For example, customize the archive name and CORS settings:
+
+```ts
+export default defineNuxtConfig({
+  modules: ["nuxt-twitch-ext"],
+  twitchExt: {
+    filename: "my-extension.zip",
+    ebs: {
+      baseURL: "https://your-app.example.com",
+      preflight: {
+        allowMethods: ["GET", "POST"],
+        allowHeaders: ["Content-Type", "Authorization", "X-Custom-Header"],
+      },
+    },
+  },
+});
+```
+
+<!-- markdownlint-disable -->
+<!-- prettier-ignore  -->
+> [!TIP]
+> When the EBS is enabled, `twitchExt.ebs.baseURL` must be set to the production URL of the Nuxt
+server, so that `extFetch` can correctly target the production EBS endpoints.
+
+## Environment Variables
+
+Provide the Twitch Extension Client ID and Extension Secret Key as server-only runtime configuration
+values.
+
+```sh
+NUXT_TWITCH_EXT_CLIENT_ID=your-extension-client-id
+NUXT_TWITCH_EXT_SECRET_KEY=your-extension-secret-key
+```
+
 ## Extension Pages and Assets
 
 The default directory for extension pages is `app/pages/extension/` and for extension assets is
@@ -75,8 +125,9 @@ For example, `app/pages/extension/<page>.vue` can be accessed as `/<page>.html`
 
 ### Twitch Extension Build
 
-The extension CLI runs Nuxt in `twitchExt` mode. In this mode, the build only includes pages from
-`app/pages/extension/` (or the directory configured by `pages.dirname`).
+The extension CLI runs Nuxt in `twitchExt` mode (`nuxt-twitch-ext`). In this mode, the build only
+includes pages from `app/pages/extension/` (or the directory configured by
+`twitchExt.pages.dirname`).
 
 For each extension page:
 
@@ -127,61 +178,28 @@ When EBS is enabled, the module register a middleware for routes under
 Call `verifyTwitchExtension` or `verifyTwitchTransaction` server utilities in EBS route handlers as
 appropriate.
 
-## Configuration
+## Auto Imports
 
-| Option                       | Default                             | Description                                             |
-| ---------------------------- | ----------------------------------- | ------------------------------------------------------- |
-| `helperScript`               | Twitch's Extension Helper URL       | Script included in extension pages                      |
-| `filename`                   | `'twitch-ext.zip'`                  | Name of the generated archive                           |
-| `pages.dirname`              | `'extension'`                       | Directory containing extension pages under `app/pages/` |
-| `ebs.enabled`                | `true`                              | Enable the EBS utilities and CORS handling              |
-| `ebs.dirname`                | `'ebs'`                             | API directory for EBS routes, such as `server/api/ebs/` |
-| `ebs.baseURL`                |                                     | Production URL used by `extFetch`                       |
-| `ebs.preflight.allowMethods` | `['GET']`                           | Methods allowed for EBS CORS preflight requests         |
-| `ebs.preflight.allowHeaders` | `['Content-Type', 'Authorization']` | Headers allowed for EBS CORS preflight requests         |
+Twitch Extension Client:
 
-For example, customize the archive name and CORS settings:
+- `extFetch(url, options)` - Fetches data from the EBS endpoints, uses the current origin in
+  development and `twitchExt.ebs.baseURL` in the generated Twitch extension as the base URL for EBS
+  requests.
 
-```ts
-export default defineNuxtConfig({
-  modules: ["nuxt-twitch-ext"],
-  twitchExt: {
-    filename: "my-extension.zip",
-    ebs: {
-      baseURL: "https://your-app.example.com",
-      preflight: {
-        allowMethods: ["GET", "POST"],
-        allowHeaders: ["Content-Type", "Authorization", "X-Custom-Header"],
-      },
-    },
-  },
-});
-```
+Server:
 
-<!-- markdownlint-disable -->
-<!-- prettier-ignore  -->
-> [!TIP]
-> When the EBS is enabled, `twitchExt.ebs.baseURL` must be set to the production URL of the Nuxt
-server, so that `extFetch` can correctly target the production EBS endpoints.
+- `verifyTwitchExtension(event)` verifies the Twitch JWT token for your extension, returning the
+  verified payload or `null` if the verification fails.
+- `verifyTwitchTransaction(event, receipt)` verifies a Bits transaction receipt for your extension,
+  returning the verified payload or `null` if the verification fails.
 
 ## Working with the EBS
-
-The module auto-imports `verifyTwitchExtension` and `verifyTwitchTransaction` in server code, and
-provides `extFetch` to the Twitch extension. `extFetch` uses the current origin in development and
-`twitchExt.ebs.baseURL` in the generated Twitch extension as the base URL for EBS requests.
-
-Provide the Twitch Extension Client ID and Extension Secret Key as server-only runtime configuration
-values. For example, set these environment variables in your deployment:
-
-```sh
-NUXT_TWITCH_EXT_CLIENT_ID=your-extension-client-id
-NUXT_TWITCH_EXT_SECRET_KEY=your-extension-secret
-```
 
 Use the token supplied by Twitch when calling an EBS endpoint as a `Bearer` token in the
 `Authorization` header; `extFetch` does not add it automatically:
 
-```ts
+```vue
+<script setup lang="ts">
 onMounted(() => {
   Twitch.ext.onAuthorized(async (auth) => {
     const data = await extFetch("/api/ebs/data", {
@@ -191,6 +209,7 @@ onMounted(() => {
     });
   });
 });
+</script>
 ```
 
 Verify the token in the server route before processing the request:
@@ -210,11 +229,6 @@ export default defineEventHandler(async (event) => {
 });
 ```
 
-- `verifyTwitchExtension(event)` verifies the Twitch JWT token for your extension, returning the
-  verified payload or `null` if the verification fails.
-- `verifyTwitchTransaction(event, receipt)` verifies a Bits transaction receipt for your extension,
-  returning the verified payload or `null` if the verification fails.
-
 <!-- markdownlint-disable -->
 <!-- prettier-ignore  -->
 > [!NOTE]
@@ -231,16 +245,16 @@ Add the following script to your `package.json` to build the Twitch extension:
 ```
 
 This runs `nuxt generate --envName twitchExt` and writes `.output/twitch-ext.zip` by default. Upload
-that ZIP as the extension's frontend in the Twitch developer console.
+that ZIP in your Twitch Extension files tab in the Twitch developer console.
 
 <!-- Badges -->
-
-[npm-version-src]:
-  https://img.shields.io/npm/v/nuxt-twitch-ext/latest.svg?style=flat&labelColor=020420&color=00DC82
+<!-- prettier-ignore-start -->
+[npm-version-src]: https://img.shields.io/npm/v/nuxt-twitch-ext/latest.svg?style=flat&labelColor=020420&color=00DC82
 [npm-version-href]: https://npmjs.com/package/nuxt-twitch-ext
-[npm-downloads-src]:
-  https://img.shields.io/npm/dm/nuxt-twitch-ext.svg?style=flat&labelColor=020420&color=00DC82
+
+[npm-downloads-src]: https://img.shields.io/npm/dm/nuxt-twitch-ext.svg?style=flat&labelColor=020420&color=00DC82
 [npm-downloads-href]: https://npmjs.com/package/nuxt-twitch-ext
-[license-src]:
-  https://img.shields.io/npm/l/nuxt-twitch-ext.svg?style=flat&labelColor=020420&color=00DC82
+
+[license-src]: https://img.shields.io/npm/l/nuxt-twitch-ext.svg?style=flat&labelColor=020420&color=00DC82
 [license-href]: LICENSE
+<!-- prettier-ignore-end -->
