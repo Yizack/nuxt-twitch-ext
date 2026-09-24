@@ -4,7 +4,6 @@ import { resolve } from 'node:path'
 import { defu } from 'defu'
 import { addImportsDir, addPlugin, addServerHandler, addServerImportsDir, addTypeTemplate, createResolver, defineNuxtModule, hasNuxtModule, useNitro } from '@nuxt/kit'
 import { ZipArchive } from 'archiver'
-import type {} from '@nuxt/nitro-server/augments'
 import type { ModuleOptions, NuxtTwitchExtOptions } from './types'
 
 export type { ModuleOptions, NuxtTwitchExtOptions }
