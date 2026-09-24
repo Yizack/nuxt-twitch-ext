@@ -169,6 +169,31 @@ export default defineNuxtModule<NuxtTwitchExtOptions>({
         }
       })
 
+      // Serve the extension's public assets from a subdirectory of the project's public directory
+      nuxt.hook('nitro:config', (nitroConfig) => {
+        const projectPublicDir = resolve(nuxt.options.dir.public)
+        let projectPublicDirConfigured = false
+
+        nitroConfig.publicAssets ??= []
+        nitroConfig.publicAssets = nitroConfig.publicAssets.map((asset) => {
+          if (!asset?.dir || resolve(nuxt.options.rootDir, asset.dir) !== projectPublicDir) return asset
+
+          projectPublicDirConfigured = true
+          return {
+            ...asset,
+            dir: resolve(projectPublicDir, options.pages.dirname),
+            baseURL: undefined,
+          }
+        })
+
+        if (!projectPublicDirConfigured) {
+          nitroConfig.publicAssets.push({
+            dir: resolve(projectPublicDir, options.pages.dirname),
+            maxAge: 0,
+          })
+        }
+      })
+
       nuxt.hook('nitro:build:public-assets', async (nitro) => {
         const files = extensionPages.map(page => page + '.html')
 

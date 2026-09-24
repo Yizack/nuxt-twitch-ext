@@ -1,4 +1,4 @@
-import { access } from 'node:fs/promises'
+import { access, readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { describe, it, expect } from 'vitest'
@@ -62,8 +62,13 @@ describe('twitch-ext', () => {
     })
   })
 
-  it('generates the twitch-ext.zip archive', async () => {
-    const zipPath = join(testContext.nuxt!.options.buildDir, 'output', 'twitch-ext.zip')
-    await expect(access(zipPath)).resolves.toBeUndefined()
+  it('copies extension public assets to the build root and excludes other public files', async () => {
+    const outputDir = join(testContext.nuxt!.options.buildDir, 'output')
+    const publicDir = join(outputDir, 'public')
+    const extensionAssetPath = join(publicDir, 'extension-asset.txt')
+
+    await expect(readFile(extensionAssetPath, 'utf8')).resolves.toBe('extension asset')
+    await expect(access(join(publicDir, 'extension', 'extension-asset.txt'))).rejects.toMatchObject({ code: 'ENOENT' })
+    await expect(access(join(publicDir, 'unrelated-asset.txt'))).rejects.toMatchObject({ code: 'ENOENT' })
   })
 })
