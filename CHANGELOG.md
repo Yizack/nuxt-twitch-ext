@@ -1,6 +1,27 @@
 # Changelog
 
 
+## v0.2.0
+
+[compare changes](https://github.com/Yizack/nuxt-twitch-ext/compare/v0.1.4...v0.2.0)
+
+### 💅 Refactors
+
+- ⚠️  Prefer imported app assets instead of dedicated `public/extension` ([2d68403](https://github.com/Yizack/nuxt-twitch-ext/commit/2d68403))
+
+### 🏡 Chore
+
+- **eslint:** Enforce sorted imports ([37c54ae](https://github.com/Yizack/nuxt-twitch-ext/commit/37c54ae))
+- **module:** Remove unused type import ([592e4b8](https://github.com/Yizack/nuxt-twitch-ext/commit/592e4b8))
+
+#### ⚠️ Breaking Changes
+
+- ⚠️  Prefer imported app assets instead of dedicated `public/extension` ([2d68403](https://github.com/Yizack/nuxt-twitch-ext/commit/2d68403))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.1.4
 
 [compare changes](https://github.com/Yizack/nuxt-twitch-ext/compare/v0.1.3...v0.1.4)
