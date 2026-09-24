@@ -35,23 +35,34 @@ export default defineNuxtConfig({
 });
 ```
 
+## Project Structure
+
+A project structure with default directories might look like this:
+
+```txt
+app/
+├── app.vue                         # Application root
+├── pages/
+│   ├── index.vue                   # Main page
+│   ├── extension/                  # Twitch extension pages
+│   │   ├── config.vue
+│   │   ├── mobile.vue
+│   │   ├── panel.vue
+│   │   └── video-overlay.vue
+│   └── ...
+public/
+├── extension/                      # Twitch static extension assets
+│   └── ...
+server/
+└── api/
+    └── ebs/                        # EBS API endpoints
+        └── ...
+```
+
 ## Extension Pages and Assets
 
 The default directory for extension pages is `app/pages/extension/` and for extension assets is
 `public/extension/`.
-
-```text
-app/
-├── pages/
-|   └── extension/
-|       ├── panel.vue
-|       ├── config.vue
-|       ├── video_overlay.vue
-|       └── ...
-public/
-└── extension/
-    └── ...
-```
 
 The directory name for extension pages and assets can be changed with `twitchExt.pages.dirname`.
 
