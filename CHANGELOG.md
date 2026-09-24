@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v0.1.3
+
+[compare changes](https://github.com/Yizack/nuxt-twitch-ext/compare/v0.1.2...v0.1.3)
+
+### 🩹 Fixes
+
+- **types:** Remove unused client ID option ([5462405](https://github.com/Yizack/nuxt-twitch-ext/commit/5462405))
+- **nitro:** Scope public assets to extensions ([8b05759](https://github.com/Yizack/nuxt-twitch-ext/commit/8b05759))
+
+### 📖 Documentation
+
+- Add repo README ([eb02c9f](https://github.com/Yizack/nuxt-twitch-ext/commit/eb02c9f))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.1.2
 
 [compare changes](https://github.com/Yizack/nuxt-twitch-ext/compare/v0.1.1...v0.1.2)
