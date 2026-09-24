@@ -21,5 +21,6 @@ export default createConfigForNuxt({
     'vue/singleline-html-element-content-newline': 'off',
     'unicorn/escape-case': 'off',
     'no-misleading-character-class': 'off',
+    'sort-imports': ['error', { ignoreDeclarationSort: true }],
   },
 })

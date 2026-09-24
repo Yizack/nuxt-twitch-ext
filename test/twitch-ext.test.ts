@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { describe, it, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import { $fetch, setup, useTestContext } from '@nuxt/test-utils/e2e'
 
 await setup({

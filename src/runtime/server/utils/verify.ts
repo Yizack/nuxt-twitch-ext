@@ -1,5 +1,5 @@
 import { Buffer } from 'node:buffer'
-import { jwtVerify, type JWTVerifyOptions } from 'jose'
+import { type JWTVerifyOptions, jwtVerify } from 'jose'
 import { type H3Event, getHeader } from 'h3'
 import { useRuntimeConfig } from '#imports'
 import type {} from '../../types/twitch-jwt'
