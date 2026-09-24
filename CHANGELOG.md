@@ -1,6 +1,21 @@
 # Changelog
 
 
+## v0.1.4
+
+[compare changes](https://github.com/Yizack/nuxt-twitch-ext/compare/v0.1.3...v0.1.4)
+
+### 📖 Documentation
+
+- Add license ([9c85fd9](https://github.com/Yizack/nuxt-twitch-ext/commit/9c85fd9))
+- **readme:** Clarify project structure ([8b2dca3](https://github.com/Yizack/nuxt-twitch-ext/commit/8b2dca3))
+- **readme:** Adjust md code ([d9ee30a](https://github.com/Yizack/nuxt-twitch-ext/commit/d9ee30a))
+- Clarify configuration options ([b329e4b](https://github.com/Yizack/nuxt-twitch-ext/commit/b329e4b))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.1.3
 
 [compare changes](https://github.com/Yizack/nuxt-twitch-ext/compare/v0.1.2...v0.1.3)
