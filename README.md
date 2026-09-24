@@ -64,16 +64,16 @@ server/
 
 ## Configuration
 
-| Option                       | Default                             | Description                                             |
-| ---------------------------- | ----------------------------------- | ------------------------------------------------------- |
-| `helperScript`               | Twitch's Extension Helper URL       | Script included in extension pages                      |
-| `filename`                   | `'twitch-ext.zip'`                  | Name of the generated archive                           |
-| `pages.dirname`              | `'extension'`                       | Directory containing extension pages under `app/pages/` |
-| `ebs.enabled`                | `true`                              | Enable the EBS utilities and CORS handling              |
-| `ebs.dirname`                | `'ebs'`                             | API directory for EBS routes, such as `server/api/ebs/` |
-| `ebs.baseURL`                |                                     | Production URL used by `extFetch`                       |
-| `ebs.preflight.allowMethods` | `['GET']`                           | Methods allowed for EBS CORS preflight requests         |
-| `ebs.preflight.allowHeaders` | `['Content-Type', 'Authorization']` | Headers allowed for EBS CORS preflight requests         |
+| Option                       | Default                                    | Description                                     |
+| ---------------------------- | ------------------------------------------ | ----------------------------------------------- |
+| `helperScript`               | [Twitch's Extension Helper][helper-script] | Script included in extension pages              |
+| `filename`                   | `'twitch-ext.zip'`                         | Name of the generated archive                   |
+| `pages.dirname`              | `'extension'`                              | Directory name for pages and assets             |
+| `ebs.enabled`                | `true`                                     | Enable the EBS utilities and CORS handling      |
+| `ebs.dirname`                | `'ebs'`                                    | Directory name for EBS API endpoints            |
+| `ebs.baseURL`                |                                            | Production URL used by `extFetch`               |
+| `ebs.preflight.allowMethods` | `['GET']`                                  | Methods allowed for EBS CORS preflight requests |
+| `ebs.preflight.allowHeaders` | `['Content-Type', 'Authorization']`        | Headers allowed for EBS CORS preflight requests |
 
 For example, customize the archive name and CORS settings:
 
@@ -247,8 +247,9 @@ Add the following script to your `package.json` to build the Twitch extension:
 This runs `nuxt generate --envName twitchExt` and writes `.output/twitch-ext.zip` by default. Upload
 that ZIP in your Twitch Extension files tab in the Twitch developer console.
 
-<!-- Badges -->
 <!-- prettier-ignore-start -->
+
+<!-- Badges -->
 [npm-version-src]: https://img.shields.io/npm/v/nuxt-twitch-ext/latest.svg?style=flat&labelColor=020420&color=00DC82
 [npm-version-href]: https://npmjs.com/package/nuxt-twitch-ext
 
@@ -257,4 +258,7 @@ that ZIP in your Twitch Extension files tab in the Twitch developer console.
 
 [license-src]: https://img.shields.io/npm/l/nuxt-twitch-ext.svg?style=flat&labelColor=020420&color=00DC82
 [license-href]: LICENSE
+
+<!-- Links -->
+[helper-script]: https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js
 <!-- prettier-ignore-end -->
