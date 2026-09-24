@@ -16,4 +16,5 @@ onMounted(() => {
 
 <template>
   <p>Panel Page</p>
+  <img src="~/assets/extension-asset.svg" alt="Extension asset">
 </template>

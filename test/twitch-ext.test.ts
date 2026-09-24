@@ -1,4 +1,4 @@
-import { access, readFile } from 'node:fs/promises'
+import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { describe, it, expect } from 'vitest'
@@ -8,6 +8,11 @@ await setup({
   rootDir: fileURLToPath(new URL('./fixtures/minimal', import.meta.url)),
   nuxtConfig: {
     envName: 'twitchExt',
+    vite: {
+      build: {
+        assetsInlineLimit: 0,
+      },
+    },
   },
   build: true,
   dev: false,
@@ -62,13 +67,18 @@ describe('twitch-ext', () => {
     })
   })
 
-  it('copies extension public assets to the build root and excludes other public files', async () => {
+  it('includes referenced app assets and project public files', async () => {
     const outputDir = join(testContext.nuxt!.options.buildDir, 'output')
     const publicDir = join(outputDir, 'public')
-    const extensionAssetPath = join(publicDir, 'extension-asset.txt')
+    const html = await $fetch<string>('/panel.html')
 
-    await expect(readFile(extensionAssetPath, 'utf8')).resolves.toBe('extension asset')
-    await expect(access(join(publicDir, 'extension', 'extension-asset.txt'))).rejects.toMatchObject({ code: 'ENOENT' })
-    await expect(access(join(publicDir, 'unrelated-asset.txt'))).rejects.toMatchObject({ code: 'ENOENT' })
+    expect(html).not.toContain('<img src="./_nuxt/unrelated-asset.')
+    expect(html).toContain('<img src="./_nuxt/extension-asset.')
+
+    const [_, extensionAssetUrl] = html.match(/src="([^"]*extension-asset[^"]+\.svg)"/)!
+    const extensionAssetPath = extensionAssetUrl!.replace(/^\.?\//, '')
+
+    await expect(readFile(join(publicDir, extensionAssetPath), 'utf8')).resolves.toContain('extension asset')
+    await expect(readFile(join(publicDir, 'public-asset.txt'), 'utf8')).resolves.toContain('public asset')
   })
 })

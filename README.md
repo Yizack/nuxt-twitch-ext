@@ -20,7 +20,7 @@ Build your Twitch Extension and Extension Backend Service (EBS) in a single Nuxt
 - Server utilities for Twitch JWT verification
 - Package extension environment assets as a ZIP
 - Only extension pages are pre-rendered in the extension build
-- Extension pages and assets are excluded from the app build
+- Extension-only pages and assets are excluded from the app build
 
 ## Quick Setup
 
@@ -52,9 +52,7 @@ app/
 │   │   ├── mobile.vue
 │   │   ├── panel.vue
 │   │   └── video-overlay.vue
-│   └── ...
-public/
-├── extension/                      # Twitch static extension assets
+├── assets/                         # Application assets
 │   └── ...
 server/
 └── api/
@@ -68,7 +66,7 @@ server/
 | ---------------------------- | ------------------------------------------ | ----------------------------------------------- |
 | `helperScript`               | [Twitch's Extension Helper][helper-script] | Script included in extension pages              |
 | `filename`                   | `'twitch-ext.zip'`                         | Name of the generated archive                   |
-| `pages.dirname`              | `'extension'`                              | Directory name for pages and assets             |
+| `pages.dirname`              | `'extension'`                              | Directory name for extension pages              |
 | `ebs.enabled`                | `true`                                     | Enable the EBS utilities and CORS handling      |
 | `ebs.dirname`                | `'ebs'`                                    | Directory name for EBS API endpoints            |
 | `ebs.baseURL`                |                                            | Production URL used by `extFetch`               |
@@ -109,12 +107,25 @@ NUXT_TWITCH_EXT_CLIENT_ID=your-extension-client-id
 NUXT_TWITCH_EXT_SECRET_KEY=your-extension-secret-key
 ```
 
-## Extension Pages and Assets
+## Extension Pages
 
-The default directory for extension pages is `app/pages/extension/` and for extension assets is
-`public/extension/`.
+The default directory for extension pages is `app/pages/extension/`. The directory name for
+extension pages can be changed with `twitchExt.pages.dirname`.
 
-The directory name for extension pages and assets can be changed with `twitchExt.pages.dirname`.
+I recommend placing extension assets in the `app/assets/` folder and referencing them from your
+extension pages as `~/assets/<file>`. For example:
+
+```vue
+<template>
+  <img src="~/assets/images/logo.png" alt="My Logo" />
+</template>
+```
+
+Nuxt processes referenced assets for the extension build; unreferenced files in `app/assets/` are
+not included.
+
+For assets that should be available in all environments, place them in `public/`. Nuxt serves these
+files as-is in development and production, and the extension build includes them too.
 
 ### Development Environment
 
@@ -149,11 +160,6 @@ panel-nuxt-config.js
 ```
 
 Regular application pages, such as `app/pages/index.vue`, are not included in the extension build.
-
-Put extension static assets in your project's `public/extension/` directory. During the `twitchExt`
-build, its contents are copied to the generated public root without the `extension/` prefix. Files
-elsewhere in `public/` are excluded from the build and ZIP, regardless of whether an extension page
-references them.
 
 The build also:
 
