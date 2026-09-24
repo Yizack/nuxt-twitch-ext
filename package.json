@@ -1,7 +1,7 @@
 {
   "name": "nuxt-twitch-ext",
   "version": "0.1.2",
-  "description": "Create Twitch Extensions with Nuxt",
+  "description": "Build your Twitch Extension and Extension Backend Service (EBS) in a single Nuxt project.",
   "keywords": [
     "nuxt",
     "twitch",
