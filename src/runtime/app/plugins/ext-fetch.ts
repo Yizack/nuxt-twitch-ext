@@ -6,23 +6,12 @@ export default defineNuxtPlugin({
   setup() {
     const config = useRuntimeConfig()
     let token: string | undefined
-    let authorizationReady: Promise<void> | undefined
-
-    if (import.meta.client && typeof Twitch !== 'undefined') {
-      authorizationReady = new Promise((resolve) => {
-        Twitch.ext.onAuthorized((auth) => {
-          token = auth.token
-          resolve()
-        })
-      })
-    }
 
     globalThis.extFetch = $fetch.create({
       baseURL: import.meta.dev ? '' : config.public.twitchExt.ebs.baseURL,
       async onRequest({ request, options }) {
-        if (!token && authorizationReady) {
-          await authorizationReady
-        }
+        if (typeof Twitch === 'undefined') return
+        token = Twitch.ext.viewer.sessionToken
         if (!token) return
 
         const ebsBaseURL = import.meta.dev ? window.location.origin : config.public.twitchExt.ebs.baseURL || window.location.origin
