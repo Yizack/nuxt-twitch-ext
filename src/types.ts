@@ -6,7 +6,7 @@ export interface NuxtTwitchExtOptions {
    */
   helperScript: string
   /**
-   * Name of the ZIP file containing the built extension
+   * Name of the ZIP file containing the built extension.
    * @default "twitch-ext.zip"
    */
   filename: string
@@ -15,7 +15,7 @@ export interface NuxtTwitchExtOptions {
    */
   pages: {
     /**
-     * Name of the page directory containing the extension pages
+     * Name of the page directory containing the extension pages.
      * @default "extension"
      */
     dirname?: string
@@ -35,7 +35,7 @@ export interface NuxtTwitchExtOptions {
    */
   ebs: false | {
     /**
-     * Enable or disable the Extension Backend Service (EBS)
+     * Enable or disable the Extension Backend Service (EBS).
      * @default true
      */
     enabled?: boolean
@@ -51,23 +51,23 @@ export interface NuxtTwitchExtOptions {
      */
     baseURL?: string
     /**
-     * Name of the API server directory containing the EBS files
+     * Name of the API server directory containing the EBS files.
      * @default "ebs"
      */
     dirname?: string
     preflight?: {
       /**
-       * CORS preflight allowed methods
+       * CORS preflight allowed methods.
        *
-       * Setting this option will override the default allowed methods
+       * Setting this option will override the default allowed methods.
        *
        * @default ["GET"]
        */
       allowMethods?: HTTPMethod[]
       /**
-       * CORS preflight allowed headers
+       * CORS preflight allowed headers.
        *
-       * Setting this option will override the default allowed headers
+       * Setting this option will override the default allowed headers.
        *
        * @default ["Content-Type", "Authorization"]
        */
