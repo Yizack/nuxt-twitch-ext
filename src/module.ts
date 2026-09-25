@@ -23,7 +23,7 @@ export default defineNuxtModule<NuxtTwitchExtOptions>({
     ebs: {
       enabled: true,
       dirname: 'ebs',
-      baseURL: undefined,
+      baseURL: '',
       preflight: {
         allowMethods: ['GET'],
         allowHeaders: ['Content-Type', 'Authorization'],
