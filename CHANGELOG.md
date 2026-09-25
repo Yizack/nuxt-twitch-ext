@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.2.4
+
+[compare changes](https://github.com/Yizack/nuxt-twitch-ext/compare/v0.2.3...v0.2.4)
+
+### 🩹 Fixes
+
+- **ext-fetch:** Read current twitch session token instead of catch onAuthorized ([1815888](https://github.com/Yizack/nuxt-twitch-ext/commit/1815888))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.2.3
 
 [compare changes](https://github.com/Yizack/nuxt-twitch-ext/compare/v0.2.2...v0.2.3)
