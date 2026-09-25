@@ -103,11 +103,11 @@ export default defineNuxtModule<NuxtTwitchExtOptions>({
     // Collect all extension build paths and pages
     nuxt.hooks.hookOnce('pages:extend', (pages) => {
       extensionBuildPaths.push(
-        ...pages.filter(page => page.path.startsWith(`/${options.pages.dirname}/`)).map(page => page.path),
+        ...pages.filter(page => page.path.startsWith(`/${options.pages.dirname}`)).map(page => page.path),
       )
       extensionPages.push(
         ...extensionBuildPaths
-          .map(path => path.split(`/${options.pages.dirname}/`)[1])
+          .map(path => path === `/${options.pages.dirname}` ? options.pages.dirname : path.split(`/${options.pages.dirname}/`)[1])
           .filter((page): page is string => page !== undefined),
       )
     })

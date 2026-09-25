@@ -92,9 +92,8 @@ export default defineNuxtConfig({
 });
 ```
 
-<!-- markdownlint-disable -->
 <!-- prettier-ignore  -->
-> [!TIP]
+> [!TIP] <!-- markdownlint-disable-line -->
 > When the EBS is enabled, `twitchExt.ebs.baseURL` must be set to the production URL of the Nuxt
 server, so that `extFetch` can correctly target the production EBS endpoints.
 
@@ -236,9 +235,8 @@ export default defineEventHandler(async (event) => {
 });
 ```
 
-<!-- markdownlint-disable -->
 <!-- prettier-ignore  -->
-> [!NOTE]
+> [!NOTE] <!-- markdownlint-disable-line -->
 > You can set `twitchExt.ebs` to `false` to disable the EBS entirely.
 
 ## Build the Extension
@@ -254,6 +252,12 @@ Add the following script to your `package.json` to build the Twitch extension:
 This runs `nuxt generate --envName twitchExt` and writes `.output/twitch-ext.zip` by default. Upload
 that ZIP in your Twitch Extension files tab in the Twitch developer console.
 
+## Caveats
+
+- An `index.vue` at the root of the extension pages directory does not generate `index.html`. With
+  the default `pages.dirname: "extension"`, `app/pages/extension/index.vue` generates
+  `/extension.html`.
+
 <!-- prettier-ignore-start -->
 
 <!-- Badges -->
@@ -268,4 +272,5 @@ that ZIP in your Twitch Extension files tab in the Twitch developer console.
 
 <!-- Links -->
 [helper-script]: https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js
+
 <!-- prettier-ignore-end -->
