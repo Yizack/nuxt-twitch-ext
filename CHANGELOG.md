@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.2.2
+
+[compare changes](https://github.com/Yizack/nuxt-twitch-ext/compare/v0.2.1...v0.2.2)
+
+### 🩹 Fixes
+
+- **ebs:** Default baseURL to empty string ([b6c9299](https://github.com/Yizack/nuxt-twitch-ext/commit/b6c9299))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.2.1
 
 [compare changes](https://github.com/Yizack/nuxt-twitch-ext/compare/v0.2.0...v0.2.1)
