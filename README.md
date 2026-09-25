@@ -212,18 +212,15 @@ Server:
 
 ## Working with the EBS
 
-Use the token supplied by Twitch when calling an EBS endpoint as a `Bearer` token in the
-`Authorization` header; `extFetch` does not add it automatically:
+After Twitch authorizes the extension, `extFetch` automatically adds the current token as a `Bearer`
+token in the `Authorization` header for requests to the EBS origin. Calls made before authorization
+do not include the token.
 
 ```vue
 <script setup lang="ts">
 onMounted(() => {
-  Twitch.ext.onAuthorized(async (auth) => {
-    const data = await extFetch("/api/ebs/data", {
-      headers: {
-        Authorization: `Bearer ${auth.token}`,
-      },
-    });
+  Twitch.ext.onAuthorized(async () => {
+    const data = await extFetch("/api/ebs/data");
   });
 });
 </script>

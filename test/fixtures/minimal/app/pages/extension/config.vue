@@ -3,12 +3,9 @@ import { onMounted } from '#imports'
 
 onMounted(() => {
   Twitch.ext.onAuthorized(async (auth) => {
-    const data = await extFetch('/api/ebs/data', {
-      headers: {
-        Authorization: `Bearer ${auth.token}`,
-      },
-    })
+    const data = await extFetch('/api/ebs/data')
 
+    console.log('Channel ID:', auth.channelId)
     console.log('Fetched data:', data)
   })
 })
