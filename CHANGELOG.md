@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.2.3
+
+[compare changes](https://github.com/Yizack/nuxt-twitch-ext/compare/v0.2.2...v0.2.3)
+
+### 🚀 Enhancements
+
+- **ext-fetch:** Automatically attach twitch auth token ([66c2493](https://github.com/Yizack/nuxt-twitch-ext/commit/66c2493))
+
+### 📖 Documentation
+
+- **readme:** Update readme ([b0cfabc](https://github.com/Yizack/nuxt-twitch-ext/commit/b0cfabc))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.2.2
 
 [compare changes](https://github.com/Yizack/nuxt-twitch-ext/compare/v0.2.1...v0.2.2)
