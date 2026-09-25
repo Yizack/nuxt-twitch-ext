@@ -118,7 +118,7 @@ paths (`/<page>`).
 
 ```vue
 <template>
-  <NuxtLink to="./another-page">Go to Panel</NuxtLink>
+  <NuxtLink to="./another-page">Another Page</NuxtLink>
 </template>
 ```
 
@@ -146,7 +146,7 @@ For example, `app/pages/extension/<page>.vue` can be accessed as `/<page>.html`
 
 ### Twitch Extension Build
 
-The extension CLI runs Nuxt in `twitchExt` mode (`nuxt-twitch-ext`). In this mode, the build only
+The module CLI runs Nuxt in `twitchExt` mode (`nuxt-twitch-ext`). In this mode, the build only
 includes pages from `app/pages/extension/` (or the directory configured by
 `twitchExt.pages.dirname`).
 
@@ -199,9 +199,9 @@ appropriate.
 
 Twitch Extension Client:
 
-- `extFetch(url, options)` - Fetches data from the EBS endpoints, uses the current origin in
-  development and `twitchExt.ebs.baseURL` in the generated Twitch extension as the base URL for EBS
-  requests.
+- `extFetch(url, options?)` instance of `$fetch` that fetches data from the EBS endpoints, uses the
+  current origin in development and `twitchExt.ebs.baseURL` in the generated Twitch extension as the
+  base URL for EBS requests.
 
 Server:
 
