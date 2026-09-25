@@ -1,6 +1,30 @@
 # Changelog
 
 
+## v0.2.1
+
+[compare changes](https://github.com/Yizack/nuxt-twitch-ext/compare/v0.2.0...v0.2.1)
+
+### 🚀 Enhancements
+
+- **pages:** Configure extension page prerendering ([f17d960](https://github.com/Yizack/nuxt-twitch-ext/commit/f17d960))
+
+### 🩹 Fixes
+
+- **pages:** Include extension root route ([3280f27](https://github.com/Yizack/nuxt-twitch-ext/commit/3280f27))
+
+### 📖 Documentation
+
+- Update tree structure ([afc4cf4](https://github.com/Yizack/nuxt-twitch-ext/commit/afc4cf4))
+
+### 🏡 Chore
+
+- **types:** Add trailing periods to module option descriptions ([eb2d279](https://github.com/Yizack/nuxt-twitch-ext/commit/eb2d279))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.2.0
 
 [compare changes](https://github.com/Yizack/nuxt-twitch-ext/compare/v0.1.4...v0.2.0)
