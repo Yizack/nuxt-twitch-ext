@@ -18,7 +18,17 @@ export interface NuxtTwitchExtOptions {
      * Name of the page directory containing the extension pages
      * @default "extension"
      */
-    dirname: string
+    dirname?: string
+    /**
+     * Pages to prerender for the extension.
+     *
+     * The default values cover the standard Twitch Extension views configured in the Developer Console.
+     *
+     * Set this option will override the default prerender pages.
+     *
+     * @default ["config", "panel", "mobile", "video_overlay", "video_component"]
+     */
+    prerender?: ('config' | 'panel' | 'mobile' | 'video_overlay' | 'video_component' | (string & {}))[]
   }
   /**
    * Configuration options for the Extension Backend Service (EBS). Set to `false` to disable the EBS.

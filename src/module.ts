@@ -18,6 +18,7 @@ export default defineNuxtModule<NuxtTwitchExtOptions>({
     filename: 'twitch-ext.zip',
     pages: {
       dirname: 'extension',
+      prerender: ['config', 'panel', 'mobile', 'video_overlay', 'video_component'],
     },
     ebs: {
       enabled: true,
@@ -79,8 +80,13 @@ export default defineNuxtModule<NuxtTwitchExtOptions>({
       addImportsDir(resolver.resolve('./runtime/app/utils'))
       addServerImportsDir(resolver.resolve('./runtime/server/utils'))
 
-      if (nuxt.options.twitchExt && nuxt.options.twitchExt.ebs) {
-        options.ebs.preflight = nuxt.options.twitchExt.ebs.preflight ?? options.ebs.preflight
+      if (nuxt.options.twitchExt) {
+        if (nuxt.options.twitchExt.ebs) {
+          options.ebs.preflight = nuxt.options.twitchExt.ebs.preflight ?? options.ebs.preflight
+        }
+        if (nuxt.options.twitchExt.pages?.prerender) {
+          options.pages.prerender = nuxt.options.twitchExt.pages.prerender ?? options.pages.prerender
+        }
       }
 
       const runtimeConfig = nuxt.options.runtimeConfig
@@ -108,7 +114,7 @@ export default defineNuxtModule<NuxtTwitchExtOptions>({
       extensionPages.push(
         ...extensionBuildPaths
           .map(path => path === `/${options.pages.dirname}` ? options.pages.dirname : path.split(`/${options.pages.dirname}/`)[1])
-          .filter((page): page is string => page !== undefined),
+          .filter((page): page is string => page !== undefined && (options.pages.prerender?.includes(page) ?? false)),
       )
     })
 

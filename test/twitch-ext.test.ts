@@ -8,6 +8,11 @@ await setup({
   rootDir: fileURLToPath(new URL('./fixtures/minimal', import.meta.url)),
   nuxtConfig: {
     envName: 'twitchExt',
+    twitchExt: {
+      pages: {
+        prerender: ['config', 'panel', 'test'],
+      },
+    },
     vite: {
       build: {
         assetsInlineLimit: 0,
@@ -65,6 +70,18 @@ describe('twitch-ext', () => {
       expect(html).not.toContain('window.__NUXT__')
       expect(html).toContain('<script src="./config-nuxt-config.js"></script>')
     })
+  })
+
+  it('renders a custom page selected for prerendering', async () => {
+    const html = await $fetch('/test.html')
+    expect(html).toContain('Test Page')
+  })
+
+  it('does not prerender a page linked from the panel', async () => {
+    const panelHtml = await $fetch('/panel.html')
+    expect(panelHtml).toContain('href="/unlisted"')
+    expect(panelHtml).toContain('Unlisted Page')
+    await expect($fetch('/unlisted.html')).rejects.toMatchObject({ statusCode: 404 })
   })
 
   it('includes referenced app assets and project public files', async () => {

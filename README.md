@@ -63,16 +63,17 @@ server/
 
 ## Configuration
 
-| Option                       | Default                                    | Description                                     |
-| ---------------------------- | ------------------------------------------ | ----------------------------------------------- |
-| `helperScript`               | [Twitch's Extension Helper][helper-script] | Script included in extension pages              |
-| `filename`                   | `'twitch-ext.zip'`                         | Name of the generated archive                   |
-| `pages.dirname`              | `'extension'`                              | Directory name for extension pages              |
-| `ebs.enabled`                | `true`                                     | Enable the EBS utilities and CORS handling      |
-| `ebs.dirname`                | `'ebs'`                                    | Directory name for EBS API endpoints            |
-| `ebs.baseURL`                |                                            | Production URL used by `extFetch`               |
-| `ebs.preflight.allowMethods` | `['GET']`                                  | Methods allowed for EBS CORS preflight requests |
-| `ebs.preflight.allowHeaders` | `['Content-Type', 'Authorization']`        | Headers allowed for EBS CORS preflight requests |
+| Option                       | Default                                                             | Description                                     |
+| ---------------------------- | ------------------------------------------------------------------- | ----------------------------------------------- |
+| `helperScript`               | [Twitch's Extension Helper][helper-script]                          | Script included in extension pages              |
+| `filename`                   | `'twitch-ext.zip'`                                                  | Name of the generated archive                   |
+| `pages.dirname`              | `'extension'`                                                       | Directory name for extension pages              |
+| `pages.prerender`            | `['config', 'panel', 'mobile', 'video_overlay', 'video_component']` | Pages to pre-render for the extension           |
+| `ebs.enabled`                | `true`                                                              | Enable the EBS utilities and CORS handling      |
+| `ebs.dirname`                | `'ebs'`                                                             | Directory name for EBS API endpoints            |
+| `ebs.baseURL`                |                                                                     | Production URL used by `extFetch`               |
+| `ebs.preflight.allowMethods` | `['GET']`                                                           | Methods allowed for EBS CORS preflight requests |
+| `ebs.preflight.allowHeaders` | `['Content-Type', 'Authorization']`                                 | Headers allowed for EBS CORS preflight requests |
 
 For example, customize the archive name and CORS settings:
 
@@ -112,6 +113,15 @@ NUXT_TWITCH_EXT_SECRET_KEY=your-extension-secret-key
 The default directory for extension pages is `app/pages/extension/`. The directory name for
 extension pages can be changed with `twitchExt.pages.dirname`.
 
+When navigating between extension pages, use relative paths (`./<page>`) instead of root-relative
+paths (`/<page>`).
+
+```vue
+<template>
+  <NuxtLink to="./another-page">Go to Panel</NuxtLink>
+</template>
+```
+
 I recommend placing extension assets in the `app/assets/` folder and referencing them from your
 extension pages as `~/assets/<file>`. For example:
 
@@ -143,7 +153,8 @@ includes pages from `app/pages/extension/` (or the directory configured by
 For each extension page:
 
 1. The `extension/` directory segment is removed from the route
-2. The page is pre-rendered as a root-level HTML file
+2. If the page name matches one of the `twitchExt.pages.prerender` values, it is pre-rendered as a
+   root-level HTML file.
 3. Nuxt's inline state is extracted into a sibling JavaScript file
 
 For example:
@@ -254,9 +265,10 @@ that ZIP in your Twitch Extension files tab in the Twitch developer console.
 
 ## Caveats
 
-- An `index.vue` at the root of the extension pages directory does not generate `index.html`. With
-  the default `pages.dirname: "extension"`, `app/pages/extension/index.vue` generates
-  `/extension.html`.
+- All paths referenced within the extension pages should be relative instead of root-relative.
+- An `index.vue` at the root of the extension pages directory and defined in the
+  `twitchExt.pages.prerender` array does not generate `index.html`. With the default
+  `pages.dirname: "extension"`, `app/pages/extension/index.vue` generates `/extension.html`.
 
 <!-- prettier-ignore-start -->
 

@@ -17,4 +17,5 @@ onMounted(() => {
 <template>
   <p>Panel Page</p>
   <img src="~/assets/extension-asset.svg" alt="Extension asset">
+  <NuxtLink to="/unlisted">Unlisted Page</NuxtLink>
 </template>
