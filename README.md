@@ -216,6 +216,12 @@ After Twitch authorizes the extension, `extFetch` automatically adds the current
 token in the `Authorization` header for requests to the EBS origin. Calls made before authorization
 do not include the token.
 
+<!-- prettier-ignore -->
+> [!IMPORTANT]
+> Add the domain of `twitchExt.ebs.baseURL` to the **Allowlist for URL Fetching
+> Domains** in your Twitch Extension **Capabilities** settings.
+> Without it, requests from the extension to the EBS may be blocked.
+
 ```vue
 <script setup lang="ts">
 onMounted(() => {
