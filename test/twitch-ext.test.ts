@@ -43,10 +43,10 @@ describe('twitch-ext', () => {
       await expect($fetch('/index.html')).rejects.toMatchObject({ statusCode: 404 })
     })
 
-    it('loads Nuxt state from panel-nuxt-config.js', async () => {
+    it('loads Nuxt state from panel-nuxt-state.js', async () => {
       const html = await $fetch('/panel.html')
       expect(html).not.toContain('window.__NUXT__')
-      expect(html).toContain('<script src="./panel-nuxt-config.js"></script>')
+      expect(html).toContain('<script src="./panel-nuxt-state.js"></script>')
     })
   })
 
@@ -65,10 +65,10 @@ describe('twitch-ext', () => {
       await expect($fetch('/index.html')).rejects.toMatchObject({ statusCode: 404 })
     })
 
-    it('loads Nuxt state from config-nuxt-config.js', async () => {
+    it('loads Nuxt state from config-nuxt-state.js', async () => {
       const html = await $fetch('/config.html')
       expect(html).not.toContain('window.__NUXT__')
-      expect(html).toContain('<script src="./config-nuxt-config.js"></script>')
+      expect(html).toContain('<script src="./config-nuxt-state.js"></script>')
     })
   })
 
