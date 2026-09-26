@@ -1,6 +1,35 @@
 # Changelog
 
 
+## v0.2.5
+
+[compare changes](https://github.com/Yizack/nuxt-twitch-ext/compare/v0.2.4...v0.2.5)
+
+### 🩹 Fixes
+
+- Remove unnecessary options middleware restriction ([aee54b9](https://github.com/Yizack/nuxt-twitch-ext/commit/aee54b9))
+- Ignore index.html pre-render for non-ssr builds ([3b3280d](https://github.com/Yizack/nuxt-twitch-ext/commit/3b3280d))
+
+### 💅 Refactors
+
+- Rename extracted Nuxt state file ([46b66da](https://github.com/Yizack/nuxt-twitch-ext/commit/46b66da))
+
+### 📖 Documentation
+
+- **readme:** Clarify Twitch CSP build limitations ([fa9a8ea](https://github.com/Yizack/nuxt-twitch-ext/commit/fa9a8ea))
+- Remove markdownlint suppressions ([7c48cac](https://github.com/Yizack/nuxt-twitch-ext/commit/7c48cac))
+- Rename `extFetch` `url` to `request` to match `$fetch` ([a89430b](https://github.com/Yizack/nuxt-twitch-ext/commit/a89430b))
+- Note Twitch EBS domain allowlist ([61790ce](https://github.com/Yizack/nuxt-twitch-ext/commit/61790ce))
+- Update project structure ([05f030b](https://github.com/Yizack/nuxt-twitch-ext/commit/05f030b))
+
+### ✅ Tests
+
+- Rename extracted Nuxt state file ([46e081c](https://github.com/Yizack/nuxt-twitch-ext/commit/46e081c))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.2.4
 
 [compare changes](https://github.com/Yizack/nuxt-twitch-ext/compare/v0.2.3...v0.2.4)
