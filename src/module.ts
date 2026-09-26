@@ -141,6 +141,10 @@ export default defineNuxtModule<NuxtTwitchExtOptions>({
       nuxt.options.nitro.prerender.ignore ||= []
       nuxt.options.nitro.prerender.ignore.push('/200.html', '/404.html')
 
+      if (!nuxt.options.ssr) {
+        nuxt.options.nitro.prerender.ignore.push('/index.html')
+      }
+
       nuxt.options.vite ||= {}
       nuxt.options.vite.build ||= {}
       nuxt.options.vite.build.rolldownOptions ||= {}
