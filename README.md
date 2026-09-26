@@ -199,9 +199,9 @@ appropriate.
 
 Twitch Extension Client:
 
-- `extFetch(url, options?)` instance of `$fetch` that fetches data from the EBS endpoints, uses the
-  current origin in development and `twitchExt.ebs.baseURL` in the generated Twitch extension as the
-  base URL for EBS requests.
+- `extFetch(request, options?)` instance of `$fetch` that fetches data from the EBS endpoints, uses
+  the current origin in development and `twitchExt.ebs.baseURL` in the generated Twitch extension as
+  the base URL for EBS requests.
 
 Server:
 
