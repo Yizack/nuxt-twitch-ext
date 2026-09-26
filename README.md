@@ -42,23 +42,25 @@ export default defineNuxtConfig({
 
 A project structure with default directories might look like this:
 
-```txt
+```text
 app/
-├── app.vue                         # Application root
+├── app.vue                        # Application root
 ├── pages/
-│   ├── index.vue                   # Main page
-│   ├── extension/                  # Twitch extension pages
+│   ├── index.vue                  # Nuxt main page (Not an extension page)
+│   ├── extension/                 # Twitch extension pages
 │   │   ├── config.vue
 │   │   ├── panel.vue
 │   │   ├── mobile.vue
 │   │   ├── video_overlay.vue
 │   │   └── video_component.vue
-├── assets/                         # Application assets
+│   ├── ...
+├── assets/                        # Application assets
 │   └── ...
 server/
 └── api/
-    └── ebs/                        # EBS API endpoints
-        └── ...
+    ├── ebs/                       # EBS API endpoints
+    │   └── ...
+    └── ...
 ```
 
 ## Configuration
