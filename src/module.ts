@@ -236,7 +236,6 @@ export default defineNuxtModule<NuxtTwitchExtOptions>({
     if (nuxt.options.envName === 'production' && !nuxt.options._prepare) {
       addServerHandler({
         middleware: true,
-        method: 'options',
         handler: resolver.resolve('./runtime/server/middleware/ebs-control-access'),
       })
 
