@@ -94,7 +94,7 @@ export default defineNuxtConfig({
 ```
 
 <!-- prettier-ignore  -->
-> [!TIP] <!-- markdownlint-disable-line -->
+> [!TIP]
 > When the EBS is enabled, `twitchExt.ebs.baseURL` must be set to the production URL of the Nuxt
 server, so that `extFetch` can correctly target the production EBS endpoints.
 
@@ -244,7 +244,7 @@ export default defineEventHandler(async (event) => {
 ```
 
 <!-- prettier-ignore  -->
-> [!NOTE] <!-- markdownlint-disable-line -->
+> [!NOTE]
 > You can set `twitchExt.ebs` to `false` to disable the EBS entirely.
 
 ## Build the Extension
