@@ -167,7 +167,7 @@ is generated as:
 
 ```text
 panel.html
-panel-nuxt-config.js
+panel-nuxt-state.js
 ```
 
 Regular application pages, such as `app/pages/index.vue`, are not included in the extension build.
@@ -268,7 +268,7 @@ that ZIP in your Twitch Extension files tab in the Twitch developer console.
   `pages.dirname: "extension"`, `app/pages/extension/index.vue` generates `/extension.html`.
 - Twitch's Extension Content Security Policy (CSP) blocks inline JavaScript, including inline
   `<script>` elements. The extension build moves Nuxt's inline state script to a sibling
-  `*-nuxt-config.js` file, but custom inline scripts are not rewritten. Put custom JavaScript in Vue
+  `*-nuxt-state.js` file, but custom inline scripts are not rewritten. Put custom JavaScript in Vue
   component scripts or imported `.js`/`.ts` files so Nuxt can bundle it.
 - In the `twitchExt` build, this module disables Nuxt UI's color mode and Nuxt Hub when those
   modules are installed. If you use either, list `nuxt-twitch-ext` before `@nuxt/ui` and

@@ -181,7 +181,7 @@ export default defineNuxtModule<NuxtTwitchExtOptions>({
       nuxt.hook('nitro:build:public-assets', async (nitro) => {
         const files = extensionPages.map(page => page + '.html')
 
-        // Modify the built HTML files to extract the inline Nuxt config into separate files
+        // Modify the built HTML files to extract the inline Nuxt state into separate files
         for (const file of files) {
           const htmlPath = resolve(nitro.options.output.publicDir, file)
           let html = await readFile(htmlPath, 'utf8')
@@ -193,14 +193,14 @@ export default defineNuxtModule<NuxtTwitchExtOptions>({
             .replace(/^<script>/, '')
             .replace(/<\/script>$/, '')
 
-          const configFile = file.replace('.html', '-nuxt-config.js')
-          const configPath = resolve(nitro.options.output.publicDir, configFile)
+          const stateFile = file.replace('.html', '-nuxt-state.js')
+          const statePath = resolve(nitro.options.output.publicDir, stateFile)
 
-          await writeFile(configPath, scriptContent, 'utf8')
+          await writeFile(statePath, scriptContent, 'utf8')
 
           html = html.replace(
             inlineScript,
-            `<script src="./${configFile}"></script>`,
+            `<script src="./${stateFile}"></script>`,
           )
 
           await writeFile(htmlPath, html, 'utf8')
