@@ -154,6 +154,11 @@ export default defineNuxtModule<NuxtTwitchExtOptions>({
         },
       }
 
+      addPlugin({
+        src: resolver.resolve('./runtime/app/plugins/ext-base.client'),
+        mode: 'client',
+      })
+
       // Add an empty error component to remove the default Nuxt error page
       nuxt.hook('app:resolve', (app) => {
         app.errorComponent = resolver.resolve('./runtime/app/components/empty-error.vue')

@@ -3,6 +3,7 @@ import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { describe, expect, it } from 'vitest'
 import { $fetch, setup, useTestContext } from '@nuxt/test-utils/e2e'
+import { getExtensionAssetBaseURL } from '../src/runtime/app/utils/extension-asset-base'
 
 await setup({
   rootDir: fileURLToPath(new URL('./fixtures/minimal', import.meta.url)),
@@ -97,5 +98,12 @@ describe('twitch-ext', () => {
 
     await expect(readFile(join(publicDir, extensionAssetPath), 'utf8')).resolves.toContain('extension asset')
     await expect(readFile(join(publicDir, 'public-asset.txt'), 'utf8')).resolves.toContain('public asset')
+  })
+
+  it('uses the versioned Twitch page directory as the base for dynamic assets', () => {
+    const navigationURL = 'https://test.ext-twitch.tv/client-id/1.0.0/abc123/panel.html'
+    const assetBaseURL = getExtensionAssetBaseURL('https://test.ext-twitch.tv', navigationURL)
+    expect(assetBaseURL).toBe('https://test.ext-twitch.tv/client-id/1.0.0/abc123/')
+    expect(new URL('./image.jpg', assetBaseURL).href).toBe('https://test.ext-twitch.tv/client-id/1.0.0/abc123/image.jpg')
   })
 })
