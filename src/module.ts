@@ -43,6 +43,11 @@ export default defineNuxtModule<NuxtTwitchExtOptions>({
         // @ts-expect-error Nuxt Hub options
         nuxt.options.hub = false
       }
+
+      if (hasNuxtModule('@nuxtjs/sitemap')) {
+        // @ts-expect-error Nuxt Sitemap options
+        nuxt.options.sitemap = false
+      }
     }
     return {}
   },
