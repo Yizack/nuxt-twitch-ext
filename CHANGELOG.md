@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.2.8
+
+[compare changes](https://github.com/Yizack/nuxt-twitch-ext/compare/v0.2.7...v0.2.8)
+
+### 🚀 Enhancements
+
+- Add image asset transforms ([3df688d](https://github.com/Yizack/nuxt-twitch-ext/commit/3df688d))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.2.7
 
 [compare changes](https://github.com/Yizack/nuxt-twitch-ext/compare/v0.2.6...v0.2.7)
