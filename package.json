@@ -63,13 +63,13 @@
     "@nuxt/schema": "^4.5.2",
     "@nuxt/test-utils": "^4.3.2",
     "@types/archiver": "^8.0.0",
-    "@types/node": "^26.6.2",
+    "@types/node": "^26.6.3",
     "changelogen": "^0.6.2",
     "eslint": "^10.11.0",
     "nuxt": "^4.5.2",
     "typescript": "^6.0.3",
-    "vitest": "^5.0.1",
+    "vitest": "^5.0.2",
     "vue-tsc": "^3.3.11"
   },
-  "packageManager": "pnpm@12.5.1"
+  "packageManager": "pnpm@12.6.0"
 }
