@@ -1,18 +1,5 @@
 import { defineNuxtPlugin } from '#app'
-
-const getExtensionAssetBaseURL = (currentOrigin: string, navigationURL?: string) => {
-  if (!navigationURL) return
-
-  try {
-    const pageURL = new URL(navigationURL)
-    if (pageURL.origin !== currentOrigin) return
-
-    return new URL('.', pageURL).href
-  }
-  catch {
-    return
-  }
-}
+import { getExtensionAssetBaseURL } from '../utils/extension-asset-base'
 
 export default defineNuxtPlugin({
   name: 'nuxt-twitch-ext:ext-base',
