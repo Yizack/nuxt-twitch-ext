@@ -2,7 +2,7 @@ import { createWriteStream } from 'node:fs'
 import { readFile, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { defu } from 'defu'
-import { addImportsDir, addPlugin, addServerHandler, addServerImportsDir, addTypeTemplate, createResolver, defineNuxtModule, hasNuxtModule, useNitro } from '@nuxt/kit'
+import { addPlugin, addServerHandler, addServerImportsDir, addTypeTemplate, createResolver, defineNuxtModule, hasNuxtModule, useNitro } from '@nuxt/kit'
 import { ZipArchive } from 'archiver'
 import type { ModuleOptions, NuxtTwitchExtOptions } from './types'
 
@@ -77,7 +77,6 @@ export default defineNuxtModule<NuxtTwitchExtOptions>({
     })
 
     if (options.ebs && options.ebs.enabled) {
-      addImportsDir(resolver.resolve('./runtime/app/utils'))
       addServerImportsDir(resolver.resolve('./runtime/server/utils'))
 
       if (nuxt.options.twitchExt) {
@@ -157,6 +156,30 @@ export default defineNuxtModule<NuxtTwitchExtOptions>({
       addPlugin({
         src: resolver.resolve('./runtime/app/plugins/ext-base.client'),
         mode: 'client',
+      })
+
+      // Transform root-relative dynamic image sources to be relative to the public directory
+      nuxt.options.vue.compilerOptions.nodeTransforms ||= []
+      nuxt.options.vue.compilerOptions.nodeTransforms.push((node) => {
+        if (!('tag' in node) || node.tag !== 'img') return
+
+        for (const prop of node.props) {
+          if (!('arg' in prop) || prop.name !== 'bind' || !prop.arg || !('content' in prop.arg) || prop.arg.content !== 'src') continue
+          if (!prop.exp || !('isStatic' in prop.exp)) continue
+
+          const expression = prop.exp
+          if (!expression.ast || expression.ast.type !== 'StringLiteral') continue
+
+          const source = expression.ast.value
+          if (!source.startsWith('/') || source.startsWith('//')) continue
+
+          const assetPath = `.${source}`
+          prop.exp = {
+            ...expression,
+            content: JSON.stringify(assetPath),
+            ast: undefined,
+          }
+        }
       })
 
       // Add an empty error component to remove the default Nuxt error page

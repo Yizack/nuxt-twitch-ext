@@ -270,7 +270,6 @@ that ZIP in your Twitch Extension files tab in the Twitch developer console.
 
 ## Caveats
 
-- All paths referenced within the extension pages should be relative instead of root-relative.
 - An `index.vue` at the root of the extension pages directory and defined in the
   `twitchExt.pages.prerender` array does not generate `index.html`. With the default
   `pages.dirname: "extension"`, `app/pages/extension/index.vue` generates `/extension.html`.

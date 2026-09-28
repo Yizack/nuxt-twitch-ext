@@ -106,4 +106,9 @@ describe('twitch-ext', () => {
     expect(assetBaseURL).toBe('https://test.ext-twitch.tv/client-id/1.0.0/abc123/')
     expect(new URL('./image.jpg', assetBaseURL).href).toBe('https://test.ext-twitch.tv/client-id/1.0.0/abc123/image.jpg')
   })
+
+  it('rewrites a root-relative dynamic image source', async () => {
+    const html = await $fetch('/panel.html')
+    expect(html).toMatch(/<img[^>]*src="\.\/public-asset\.svg"/)
+  })
 })

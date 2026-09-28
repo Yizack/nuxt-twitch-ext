@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { onMounted } from '#imports'
-
 onMounted(() => {
   Twitch.ext.onAuthorized(async (auth) => {
     const data = await extFetch('/api/ebs/data')
@@ -12,8 +10,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <p>Panel Page</p>
-  <img src="~/assets/extension-asset.svg" alt="Extension asset">
-  <img :src="'/public-asset.svg'" alt="Dynamic public asset">
-  <NuxtLink to="/unlisted">Unlisted Page</NuxtLink>
+  <p>Test Page</p>
+  <img src="/patricio.webp">
 </template>

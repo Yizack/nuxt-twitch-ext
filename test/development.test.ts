@@ -30,6 +30,11 @@ describe('development', () => {
       const extensionHtml = await $fetch('/extension/panel')
       expect(html).toBe(extensionHtml)
     })
+
+    it('keeps root-relative dynamic image sources in development', async () => {
+      const html = await $fetch('/panel.html')
+      expect(html).toMatch(/<img[^>]*src="\/public-asset\.svg"/)
+    })
   })
 
   describe('config.html', () => {
