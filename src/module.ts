@@ -2,7 +2,7 @@ import { createWriteStream } from 'node:fs'
 import { readFile, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { defu } from 'defu'
-import { addImports, addPlugin, addServerHandler, addServerImportsDir, addTypeTemplate, createResolver, defineNuxtModule, hasNuxtModule, useNitro } from '@nuxt/kit'
+import { addImportsDir, addPlugin, addServerHandler, addServerImportsDir, addTypeTemplate, createResolver, defineNuxtModule, hasNuxtModule, useNitro } from '@nuxt/kit'
 import { ZipArchive } from 'archiver'
 import type { ModuleOptions, NuxtTwitchExtOptions } from './types'
 
@@ -76,10 +76,7 @@ export default defineNuxtModule<NuxtTwitchExtOptions>({
       nitro: true,
     })
 
-    addImports({
-      name: 'extAsset',
-      from: resolver.resolve('./runtime/app/utils/ext-asset'),
-    })
+    addImportsDir(resolver.resolve('./runtime/app/utils'))
 
     if (options.ebs && options.ebs.enabled) {
       addServerImportsDir(resolver.resolve('./runtime/server/utils'))
@@ -157,11 +154,6 @@ export default defineNuxtModule<NuxtTwitchExtOptions>({
           groups: [{ name: 'vendor', test: /node_modules[\\/]/ }],
         },
       }
-
-      addPlugin({
-        src: resolver.resolve('./runtime/app/plugins/ext-base.client'),
-        mode: 'client',
-      })
 
       // Add an empty error component to remove the default Nuxt error page
       nuxt.hook('app:resolve', (app) => {

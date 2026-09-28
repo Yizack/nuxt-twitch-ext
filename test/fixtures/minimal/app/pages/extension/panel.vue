@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import { onMounted, ref } from '#imports'
+import { onMounted } from '#imports'
 import { extAsset } from '../../../../../../src/runtime/app/utils/ext-asset'
-
-const showImage = ref(true)
 
 onMounted(() => {
   Twitch.ext.onAuthorized(async (auth) => {
@@ -17,6 +15,6 @@ onMounted(() => {
 <template>
   <p>Panel Page</p>
   <img src="~/assets/extension-asset.svg" alt="Extension asset">
-  <img v-if="showImage" :src="extAsset('/public-asset.svg')" alt="Dynamic public asset">
+  <img :src="extAsset('/public-asset.svg')" alt="Dynamic public asset">
   <NuxtLink to="/unlisted">Unlisted Page</NuxtLink>
 </template>
