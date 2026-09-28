@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v0.2.10
+
+[compare changes](https://github.com/Yizack/nuxt-twitch-ext/compare/v0.2.9...v0.2.10)
+
+### 🩹 Fixes
+
+- Disable nuxt sitemap for twitchExt ([232b628](https://github.com/Yizack/nuxt-twitch-ext/commit/232b628))
+
+### 💅 Refactors
+
+- **ext-base:** Import asset base util ([ee04482](https://github.com/Yizack/nuxt-twitch-ext/commit/ee04482))
+- Simplify ext-asset imports & runtime ([9a2f264](https://github.com/Yizack/nuxt-twitch-ext/commit/9a2f264))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.2.9
 
 [compare changes](https://github.com/Yizack/nuxt-twitch-ext/compare/v0.2.8...v0.2.9)
