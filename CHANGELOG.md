@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.2.6
+
+[compare changes](https://github.com/Yizack/nuxt-twitch-ext/compare/v0.2.5...v0.2.6)
+
+### 🩹 Fixes
+
+- Add ext-base plugin for relative assets ([780bb5a](https://github.com/Yizack/nuxt-twitch-ext/commit/780bb5a))
+
+### 🏡 Chore
+
+- Update deps ([026fd9a](https://github.com/Yizack/nuxt-twitch-ext/commit/026fd9a))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.2.5
 
 [compare changes](https://github.com/Yizack/nuxt-twitch-ext/compare/v0.2.4...v0.2.5)
