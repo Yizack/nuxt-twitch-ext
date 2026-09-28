@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.2.9
+
+[compare changes](https://github.com/Yizack/nuxt-twitch-ext/compare/v0.2.8...v0.2.9)
+
+### 🚀 Enhancements
+
+- **ext:** Add `extAsset` helper; remove image transform ([048d0ed](https://github.com/Yizack/nuxt-twitch-ext/commit/048d0ed))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.2.8
 
 [compare changes](https://github.com/Yizack/nuxt-twitch-ext/compare/v0.2.7...v0.2.8)
