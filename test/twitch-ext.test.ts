@@ -49,6 +49,11 @@ describe('twitch-ext', () => {
       expect(html).not.toContain('window.__NUXT__')
       expect(html).toContain('<script src="./panel-nuxt-state.js"></script>')
     })
+
+    it('resolves extAsset paths relative to the Twitch extension', async () => {
+      const html = await $fetch<string>('/panel.html')
+      expect(html).toMatch(/<img[^>]*src="\.\/public-asset\.svg"/)
+    })
   })
 
   describe('config.html', () => {
@@ -105,10 +110,5 @@ describe('twitch-ext', () => {
     const assetBaseURL = getExtensionAssetBaseURL('https://test.ext-twitch.tv', navigationURL)
     expect(assetBaseURL).toBe('https://test.ext-twitch.tv/client-id/1.0.0/abc123/')
     expect(new URL('./image.jpg', assetBaseURL).href).toBe('https://test.ext-twitch.tv/client-id/1.0.0/abc123/image.jpg')
-  })
-
-  it('rewrites a root-relative dynamic image source', async () => {
-    const html = await $fetch('/panel.html')
-    expect(html).toMatch(/<img[^>]*src="\.\/public-asset\.svg"/)
   })
 })

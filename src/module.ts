@@ -2,9 +2,8 @@ import { createWriteStream } from 'node:fs'
 import { readFile, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { defu } from 'defu'
-import { addPlugin, addServerHandler, addServerImportsDir, addTypeTemplate, createResolver, defineNuxtModule, hasNuxtModule, useNitro } from '@nuxt/kit'
+import { addImports, addPlugin, addServerHandler, addServerImportsDir, addTypeTemplate, createResolver, defineNuxtModule, hasNuxtModule, useNitro } from '@nuxt/kit'
 import { ZipArchive } from 'archiver'
-import { addImageAssetTransforms } from './build/image-asset-transforms'
 import type { ModuleOptions, NuxtTwitchExtOptions } from './types'
 
 export type { ModuleOptions, NuxtTwitchExtOptions }
@@ -77,6 +76,11 @@ export default defineNuxtModule<NuxtTwitchExtOptions>({
       nitro: true,
     })
 
+    addImports({
+      name: 'extAsset',
+      from: resolver.resolve('./runtime/app/utils/ext-asset'),
+    })
+
     if (options.ebs && options.ebs.enabled) {
       addServerImportsDir(resolver.resolve('./runtime/server/utils'))
 
@@ -144,8 +148,6 @@ export default defineNuxtModule<NuxtTwitchExtOptions>({
       if (!nuxt.options.ssr) {
         nuxt.options.nitro.prerender.ignore.push('/index.html')
       }
-
-      addImageAssetTransforms(nuxt)
 
       nuxt.options.vite ||= {}
       nuxt.options.vite.build ||= {}

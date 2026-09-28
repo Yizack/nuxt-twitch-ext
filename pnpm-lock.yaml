@@ -197,12 +197,6 @@ importers:
       '@types/twitch-ext':
         specifier: ^1.24.9
         version: 1.24.9
-      '@vue/compiler-core':
-        specifier: ^3.5.43
-        version: 3.5.43
-      '@vue/compiler-sfc':
-        specifier: ^3.5.43
-        version: 3.5.43
       archiver:
         specifier: ^8.0.0
         version: 8.0.0
@@ -212,9 +206,6 @@ importers:
       jose:
         specifier: ^6.2.12
         version: 6.2.12
-      magic-string:
-        specifier: ^0.30.21
-        version: 0.30.21
     devDependencies:
       '@nuxt/devtools':
         specifier: ^3.4.2

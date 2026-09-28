@@ -139,6 +139,16 @@ not included.
 For assets that should be available in all environments, place them in `public/`. Nuxt serves these
 files as-is in development and production, and the extension build includes them too.
 
+Use the auto-imported `extAsset` helper for public assets referenced dynamically in an extension
+page. It keeps root-relative paths in development and resolves them against the extension assets
+in a Twitch build:
+
+```vue
+<template>
+  <img :src="extAsset('/images/logo.png')" alt="Logo">
+</template>
+```
+
 ### Development Environment
 
 In development, extension pages are accessible at root level with `.html` for easy preview during
@@ -201,6 +211,7 @@ appropriate.
 
 Twitch Extension Client:
 
+- `extAsset(path: string)` returns the path for an asset within the Twitch extension, based on the current navigation URL and origin.
 - `extFetch(request, options?)` instance of `$fetch` that fetches data from the EBS endpoints, uses
   the current origin in development and `twitchExt.ebs.baseURL` in the generated Twitch extension as
   the base URL for EBS requests.
@@ -281,6 +292,7 @@ that ZIP in your Twitch Extension files tab in the Twitch developer console.
   modules are installed. If you use either, list `nuxt-twitch-ext` before `@nuxt/ui` and
   `@nuxthub/core` in the `modules` array to ensure no inline scripts are included in the HTML
   output.
+- Referencing assets from the `public` folder without using `extAsset` may result in incorrect paths within the Twitch extension.
 
 <!-- prettier-ignore-start -->
 

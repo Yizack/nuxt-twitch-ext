@@ -52,12 +52,9 @@
   "dependencies": {
     "@nuxt/kit": "^4.5.2",
     "@types/twitch-ext": "^1.24.9",
-    "@vue/compiler-core": "^3.5.43",
-    "@vue/compiler-sfc": "^3.5.43",
     "archiver": "^8.0.0",
     "defu": "^6.1.7",
-    "jose": "^6.2.12",
-    "magic-string": "^0.30.21"
+    "jose": "^6.2.12"
   },
   "devDependencies": {
     "@nuxt/devtools": "^3.4.2",

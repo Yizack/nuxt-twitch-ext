@@ -31,7 +31,7 @@ describe('development', () => {
       expect(html).toBe(extensionHtml)
     })
 
-    it('keeps root-relative dynamic image sources in development', async () => {
+    it('keeps extAsset paths root-relative in development', async () => {
       const html = await $fetch('/panel.html')
       expect(html).toMatch(/<img[^>]*src="\/public-asset\.svg"/)
     })
