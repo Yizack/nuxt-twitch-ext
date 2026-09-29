@@ -16,7 +16,7 @@ Build your Twitch Extension and Extension Backend Service (EBS) in a single Nuxt
 - Preview extension pages in Local Test with `.html`
 - Include the Twitch Extension Helper and type definitions
 - EBS API endpoints with CORS support
-- Client-side utility for EBS calls
+- Client-side utility for EBS calls and public asset paths
 - Server utilities for Twitch JWT verification
 - Package extension environment assets as a ZIP
 - Only extension pages are pre-rendered in the extension build
@@ -140,12 +140,12 @@ For assets that should be available in all environments, place them in `public/`
 files as-is in development and production, and the extension build includes them too.
 
 Use the auto-imported `extAsset` helper for public assets referenced dynamically in an extension
-page. It keeps root-relative paths in development and resolves them against the extension assets
-in a Twitch build:
+page. It keeps root-relative paths in development and resolves them against the extension assets in
+a Twitch build:
 
 ```vue
 <template>
-  <img :src="extAsset('/images/logo.png')" alt="Logo">
+  <img :src="extAsset('/images/logo.png')" alt="Logo" />
 </template>
 ```
 
@@ -211,7 +211,8 @@ appropriate.
 
 Twitch Extension Client:
 
-- `extAsset(path: string)` returns the path for an asset within the Twitch extension, based on the current navigation URL and origin.
+- `extAsset(path)` returns the path for an asset within the Twitch extension, based on the current
+  navigation URL and origin.
 - `extFetch(request, options?)` instance of `$fetch` that fetches data from the EBS endpoints, uses
   the current origin in development and `twitchExt.ebs.baseURL` in the generated Twitch extension as
   the base URL for EBS requests.
@@ -288,11 +289,12 @@ that ZIP in your Twitch Extension files tab in the Twitch developer console.
   `<script>` elements. The extension build moves Nuxt's inline state script to a sibling
   `*-nuxt-state.js` file, but custom inline scripts are not rewritten. Put custom JavaScript in Vue
   component scripts or imported `.js`/`.ts` files so Nuxt can bundle it.
-- In the `twitchExt` build, this module disables Nuxt UI's color mode, Nuxt Hub, and Nuxt Sitemap when those
-  modules are installed. If you use either, list `nuxt-twitch-ext` before `@nuxt/ui`,
-  `@nuxthub/core`, and `@nuxtjs/sitemap` in the `modules` array to ensure no inline scripts are included in the HTML
-  output.
-- Referencing assets from the `public` folder without using `extAsset` may result in incorrect paths within the Twitch extension.
+- In the `twitchExt` build, this module disables Nuxt UI's color mode, Nuxt Hub, and Nuxt Sitemap
+  when those modules are installed. If you use either, list `nuxt-twitch-ext` before `@nuxt/ui`,
+  `@nuxthub/core`, and `@nuxtjs/sitemap` in the `modules` array to ensure no inline scripts are
+  included in the HTML output.
+- Referencing assets from the `public` folder without using `extAsset` may result in incorrect paths
+  within the Twitch extension.
 
 <!-- prettier-ignore-start -->
 
