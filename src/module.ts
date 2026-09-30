@@ -2,9 +2,10 @@ import { createWriteStream } from 'node:fs'
 import { readFile, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { defu } from 'defu'
-import { addImportsDir, addPlugin, addServerHandler, addServerImportsDir, addTypeTemplate, createResolver, defineNuxtModule, hasNuxtModule, useNitro } from '@nuxt/kit'
+import { addImportsDir, addPlugin, addServerHandler, addServerImportsDir, addTypeTemplate, createResolver, defineNuxtModule, useNitro } from '@nuxt/kit'
 import { ZipArchive } from 'archiver'
 import type { ModuleOptions, NuxtTwitchExtOptions } from './types'
+import { disableDependencies } from './dependencies'
 
 export type { ModuleOptions, NuxtTwitchExtOptions }
 
@@ -30,27 +31,7 @@ export default defineNuxtModule<NuxtTwitchExtOptions>({
       },
     },
   },
-  moduleDependencies(nuxt): Record<string, never> {
-    if (nuxt.options.envName === 'twitchExt') {
-      if (hasNuxtModule('@nuxt/ui')) {
-        // @ts-expect-error Nuxt UI options
-        nuxt.options.ui ||= {}
-        // @ts-expect-error Nuxt UI Color Mode
-        nuxt.options.ui.colorMode = false
-      }
-
-      if (hasNuxtModule('@nuxthub/core')) {
-        // @ts-expect-error Nuxt Hub options
-        nuxt.options.hub = false
-      }
-
-      if (hasNuxtModule('@nuxtjs/sitemap')) {
-        // @ts-expect-error Nuxt Sitemap options
-        nuxt.options.sitemap = false
-      }
-    }
-    return {}
-  },
+  moduleDependencies: disableDependencies,
   setup(options, nuxt) {
     const resolver = createResolver(import.meta.url)
 
