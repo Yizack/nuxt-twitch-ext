@@ -289,10 +289,8 @@ that ZIP in your Twitch Extension files tab in the Twitch developer console.
   `<script>` elements. The extension build moves Nuxt's inline state script to a sibling
   `*-nuxt-state.js` file, but custom inline scripts are not rewritten. Put custom JavaScript in Vue
   component scripts or imported `.js`/`.ts` files so Nuxt can bundle it.
-- In the `twitchExt` build, this module disables Nuxt UI's color mode, Nuxt Hub, and Nuxt Sitemap
-  when those modules are installed. If you use either, list `nuxt-twitch-ext` before `@nuxt/ui`,
-  `@nuxthub/core`, and `@nuxtjs/sitemap` in the `modules` array to ensure no inline scripts are
-  included in the HTML output.
+- In the `twitchExt` build, this module disables unsupported modules such as `@nuxtjs/color-mode`,
+  `@nuxthub/core`, and `@nuxtjs/sitemap`.
 - Referencing assets from the `public` folder without using `extAsset` may result in incorrect paths
   within the Twitch extension.
 
