@@ -1,6 +1,27 @@
 # Changelog
 
 
+## v0.2.11
+
+[compare changes](https://github.com/Yizack/nuxt-twitch-ext/compare/v0.2.10...v0.2.11)
+
+### 🩹 Fixes
+
+- Always disable features in twitchExt mode ([f8d3b23](https://github.com/Yizack/nuxt-twitch-ext/commit/f8d3b23))
+- Remove unsupported module options functions ([112d532](https://github.com/Yizack/nuxt-twitch-ext/commit/112d532))
+
+### 💅 Refactors
+
+- **module:** Extract dependency toggles to helper ([38ad409](https://github.com/Yizack/nuxt-twitch-ext/commit/38ad409))
+
+### 📖 Documentation
+
+- Update readme ([4305ce3](https://github.com/Yizack/nuxt-twitch-ext/commit/4305ce3))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.2.10
 
 [compare changes](https://github.com/Yizack/nuxt-twitch-ext/compare/v0.2.9...v0.2.10)
