@@ -103,4 +103,14 @@ describe('twitch-ext', () => {
     await expect(readFile(join(publicDir, extensionAssetPath), 'utf8')).resolves.toContain('extension asset')
     await expect(readFile(join(publicDir, 'public-asset.svg'), 'utf8')).resolves.toContain('public asset')
   })
+
+  it('disables not supported modules in extension mode', () => {
+    const options = testContext.nuxt!.options as unknown as Record<string, unknown>
+    expect(options).toMatchObject({
+      colorMode: false,
+      ui: { colorMode: false },
+      hub: false,
+      sitemap: false,
+    })
+  })
 })

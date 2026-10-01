@@ -5,7 +5,7 @@ import { defu } from 'defu'
 import { addImportsDir, addPlugin, addServerHandler, addServerImportsDir, addTypeTemplate, createResolver, defineNuxtModule, useNitro } from '@nuxt/kit'
 import { ZipArchive } from 'archiver'
 import type { ModuleOptions, NuxtTwitchExtOptions } from './types'
-import { disableDependencies } from './dependencies'
+import { disableModules } from './dependencies'
 
 export type { ModuleOptions, NuxtTwitchExtOptions }
 
@@ -31,7 +31,7 @@ export default defineNuxtModule<NuxtTwitchExtOptions>({
       },
     },
   },
-  moduleDependencies: disableDependencies,
+  moduleDependencies: disableModules,
   setup(options, nuxt) {
     const resolver = createResolver(import.meta.url)
 
