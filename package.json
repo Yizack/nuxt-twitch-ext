@@ -8,31 +8,31 @@
     "twitch-ext",
     "twitch-extension"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Yizack/nuxt-twitch-ext.git"
-  },
   "homepage": "https://github.com/Yizack/nuxt-twitch-ext",
+  "license": "MIT",
   "author": {
     "name": "Yizack Rangel",
     "email": "yizackr@gmail.com",
     "url": "https://yizack.com"
   },
-  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yizack/nuxt-twitch-ext.git"
+  },
+  "bin": {
+    "nuxt-twitch-ext": "./bin/cli.mjs"
+  },
+  "files": [
+    "dist",
+    "bin"
+  ],
   "type": "module",
+  "main": "./dist/module.mjs",
   "exports": {
     ".": {
       "types": "./dist/types.d.mts",
       "import": "./dist/module.mjs"
     }
-  },
-  "main": "./dist/module.mjs",
-  "files": [
-    "dist",
-    "bin"
-  ],
-  "bin": {
-    "nuxt-twitch-ext": "./bin/cli.mjs"
   },
   "scripts": {
     "build": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxt-module-build build",

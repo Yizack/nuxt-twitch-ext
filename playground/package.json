@@ -1,6 +1,6 @@
 {
-  "private": true,
   "name": "nuxt-twitch-ext-playground",
+  "private": true,
   "type": "module",
   "scripts": {
     "postinstall": "nuxt prepare",

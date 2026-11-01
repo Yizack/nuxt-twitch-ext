@@ -1,5 +1,5 @@
 {
-  "private": true,
   "name": "twitch-ext",
+  "private": true,
   "type": "module"
 }

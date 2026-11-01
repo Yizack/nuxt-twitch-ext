@@ -1,10 +1,10 @@
 # nuxt-twitch-ext
 
-<!-- prettier-ignore-start -->
+<!-- oxfmt-ignore-start -->
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![License][license-src]][license-href]
-<!-- prettier-ignore-end -->
+<!-- oxfmt-ignore-end -->
 
 Build your Twitch Extension and Extension Backend Service (EBS) in a single Nuxt project.
 
@@ -34,8 +34,8 @@ pnpm add nuxt-twitch-ext
 
 ```js
 export default defineNuxtConfig({
-  modules: ["nuxt-twitch-ext"],
-});
+  modules: ['nuxt-twitch-ext']
+})
 ```
 
 ## Project Structure
@@ -81,24 +81,23 @@ For example, customize the archive name and CORS settings:
 
 ```ts
 export default defineNuxtConfig({
-  modules: ["nuxt-twitch-ext"],
+  modules: ['nuxt-twitch-ext'],
   twitchExt: {
-    filename: "my-extension.zip",
+    filename: 'my-extension.zip',
     ebs: {
-      baseURL: "https://your-app.example.com",
+      baseURL: 'https://your-app.example.com',
       preflight: {
-        allowMethods: ["GET", "POST"],
-        allowHeaders: ["Content-Type", "Authorization", "X-Custom-Header"],
-      },
-    },
-  },
-});
+        allowMethods: ['GET', 'POST'],
+        allowHeaders: ['Content-Type', 'Authorization', 'X-Custom-Header']
+      }
+    }
+  }
+})
 ```
 
-<!-- prettier-ignore  -->
 > [!TIP]
 > When the EBS is enabled, `twitchExt.ebs.baseURL` must be set to the production URL of the Nuxt
-server, so that `extFetch` can correctly target the production EBS endpoints.
+> server, so that `extFetch` can correctly target the production EBS endpoints.
 
 ## Environment Variables
 
@@ -230,19 +229,18 @@ After Twitch authorizes the extension, `extFetch` automatically adds the current
 token in the `Authorization` header for requests to the EBS origin. Calls made before authorization
 do not include the token.
 
-<!-- prettier-ignore -->
 > [!IMPORTANT]
-> Add the domain of `twitchExt.ebs.baseURL` to the **Allowlist for URL Fetching
-> Domains** in your Twitch Extension **Capabilities** settings.
-> Without it, requests from the extension to the EBS may be blocked.
+> Add the domain of `twitchExt.ebs.baseURL` to the **Allowlist for URL Fetching Domains** in your
+> Twitch Extension **Capabilities** settings. Without it, requests from the extension to the EBS may
+> be blocked.
 
 ```vue
 <script setup lang="ts">
 onMounted(() => {
   Twitch.ext.onAuthorized(async () => {
-    const data = await extFetch("/api/ebs/data");
-  });
-});
+    const data = await extFetch('/api/ebs/data')
+  })
+})
 </script>
 ```
 
@@ -250,20 +248,19 @@ Verify the token in the server route before processing the request:
 
 ```ts
 export default defineEventHandler(async (event) => {
-  const payload = await verifyTwitchExtension(event);
+  const payload = await verifyTwitchExtension(event)
 
   if (!payload) {
     throw createError({
       status: 401,
-      message: "Invalid authorization",
-    });
+      message: 'Invalid authorization'
+    })
   }
 
-  return { channelId: payload.channel_id };
-});
+  return { channelId: payload.channel_id }
+})
 ```
 
-<!-- prettier-ignore  -->
 > [!NOTE]
 > You can set `twitchExt.ebs` to `false` to disable the EBS entirely.
 
@@ -294,7 +291,7 @@ that ZIP in your Twitch Extension files tab in the Twitch developer console.
 - Referencing assets from the `public` folder without using `extAsset` may result in incorrect paths
   within the Twitch extension.
 
-<!-- prettier-ignore-start -->
+<!-- oxfmt-ignore-start -->
 
 <!-- Badges -->
 [npm-version-src]: https://img.shields.io/npm/v/nuxt-twitch-ext/latest.svg?style=flat&labelColor=020420&color=00DC82
@@ -309,4 +306,4 @@ that ZIP in your Twitch Extension files tab in the Twitch developer console.
 <!-- Links -->
 [helper-script]: https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js
 
-<!-- prettier-ignore-end -->
+<!-- oxfmt-ignore-end -->
