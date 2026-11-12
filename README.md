@@ -1,3 +1,5 @@
+![presentation](https://github.com/user-attachments/assets/14765280-897b-44bc-a769-58636a250d2e)
+
 # nuxt-twitch-ext
 
 <!-- oxfmt-ignore-start -->
